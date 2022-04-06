@@ -2,183 +2,129 @@ import React from "react";
 import { Row, Col } from "react-bootstrap";
 import styled from "styled-components";
 const Wrapper = styled.div`
-  padding: 55px 0;
+  background: url(./images/problembg.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  padding: 25px 0;
+  .team-box {
+    height: 100%;
+  }
+  .second-team-box {
+    height: 100%;
+  }
+  .team-image {
+    width: 150px;
+  }
   .title {
+    font-family: Poppins;
     font-style: normal;
-    font-weight: 700;
-    font-size: 50px;
-    line-height: 125%;
-    /* identical to box height, or 62px */
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 72px;
 
-    text-align: center;
-
-    color: #ffffff;
-  }
-  .tagline {
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-    line-height: 152%;
-    /* or 30px */
-
-    text-align: center;
-
-    color: #ffffff;
-  }
-  .image {
-    width: 100%;
+    color: #2fd4e7;
   }
   .position {
+    font-family: Poppins;
     font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 100%;
-    /* identical to box height, or 14px */
-
-    color: #0bd488;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 150%;
+    text-align: center;
+    color: #2fd4e7;
+    width: 75%;
   }
   .name {
+    font-family: Poppins;
     font-style: normal;
-    font-weight: 700;
-    font-size: 22px;
-    line-height: 100%;
-    /* identical to box height, or 22px */
-
-    letter-spacing: 0.02em;
-
-    color: #ffffff;
-  }
-  .text {
-    font-style: normal;
-    font-weight: normal;
+    font-weight: 500;
     font-size: 16px;
     line-height: 150%;
-    /* or 24px */
-
-    color: #d9d9d9;
+    color: #ffffff;
   }
-  .social {
-    margin-right: 12px;
+  .button {
+    border: 0;
+    outline: 0;
+    background: #2fd4e7;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 150%;
+
+    color: #000000;
+    padding: 10px 12px;
+    margin-top: 20px;
+  }
+  @media only screen and (max-width: 1399px) {
+    .position {
+      width: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 991px) {
+    .title {
+      font-size: 36px;
+    }
+    .position {
+      font-size: 20px;
+    }
   }
   @media only screen and (max-width: 520px) {
-    br {
-      display: none;
+    .team-image {
+      width: 100px;
     }
+    .position {
+      font-size: 18px;
+    }
+    .name {
+      font-size: 14px;
+    }
+  }
+  @media only screen and (max-width: 400px) {
     .title {
-      font-size: 40px;
+      font-size: 28px;
     }
   }
 `;
 const Team = () => {
   const teamArray = [
+    { position: "CEO", name: "Jan Janulewicz", image: "./images/ceo.png" },
+    { position: "CMO", name: "Darren Humpleby", image: "./images/cmo.png" },
     {
-      img: "./images/1.png",
-      position: "Managing Director",
-      name: "Sonia A. Smith",
-      text: "Lorem Ipsum is simply dummy text the printing typesetting industry. Lorem Ipsum been the industry's standard dummy.",
-      linkedin: "https://bd.linkedin.com/",
-      imdb: "https://www.imdb.com/",
-      twitter: "https://twitter.com/",
+      position: `Director of Field   Operations`,
+      name: "Oliver Ades",
+      image: "./images/director.png",
     },
     {
-      img: "./images/1.png",
-      position: "Managing Director",
-      name: "Sonia A. Smith",
-      text: "Lorem Ipsum is simply dummy text the printing typesetting industry. Lorem Ipsum been the industry's standard dummy.",
-      linkedin: "https://bd.linkedin.com/",
-      imdb: "https://www.imdb.com/",
-      twitter: "https://twitter.com/",
-    },
-    {
-      img: "./images/1.png",
-      position: "Managing Director",
-      name: "Sonia A. Smith",
-      text: "Lorem Ipsum is simply dummy text the printing typesetting industry. Lorem Ipsum been the industry's standard dummy.",
-      linkedin: "https://bd.linkedin.com/",
-      imdb: "https://www.imdb.com/",
-      twitter: "https://twitter.com/",
-    },
-    {
-      img: "./images/1.png",
-      position: "Managing Director",
-      name: "Sonia A. Smith",
-      text: "Lorem Ipsum is simply dummy text the printing typesetting industry. Lorem Ipsum been the industry's standard dummy.",
-      linkedin: "https://bd.linkedin.com/",
-      imdb: "https://www.imdb.com/",
-      twitter: "https://twitter.com/",
-    },
-    {
-      img: "./images/1.png",
-      position: "Managing Director",
-      name: "Sonia A. Smith",
-      text: "Lorem Ipsum is simply dummy text the printing typesetting industry. Lorem Ipsum been the industry's standard dummy.",
-      linkedin: "https://bd.linkedin.com/",
-      imdb: "https://www.imdb.com/",
-      twitter: "https://twitter.com/",
-    },
-    {
-      img: "./images/1.png",
-      position: "Managing Director",
-      name: "Sonia A. Smith",
-      text: "Lorem Ipsum is simply dummy text the printing typesetting industry. Lorem Ipsum been the industry's standard dummy.",
-      linkedin: "https://bd.linkedin.com/",
-      imdb: "https://www.imdb.com/",
-      twitter: "https://twitter.com/",
+      position: "Chief Solutions Architect ",
+      name: "Jack Fenton",
+      image: "./images/csa.png",
     },
   ];
   return (
-    <Wrapper id="team" data-aos="fade-up">
-      <Col xs={11} md={10} xl={9} xxl={8} className="mx-auto">
-        <h3 className="title text-center">Our Team Artis</h3>
-        <p className="tagline text-center">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />{" "}
-          accumsan hendrerit commodo.
-        </p>
-        <Row className="my-4">
+    <Wrapper>
+      <Col xs={11} xxl={10} className="mx-auto">
+        <Row>
           {teamArray.map((el, i) => (
-            <Col
-              sm={6}
-              md={4}
-              key={i}
-              className="my-4 d-flex flex-column justify-content-between"
-              data-aos="fade-up"
-            >
-              <div>
-                <img src={el.img} alt="#" className="image" />
-                <p className="position my-3">{el.position}</p>
-                <p className="name">{el.name}</p>
-                <p className="text my-3">{el.text}</p>
-              </div>
-              <div>
-                <a
-                  href={el.linkedin}
-                  className="social"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img src="./images/linkedin.png" alt="#" />
-                </a>
-                <a
-                  href={el.imdb}
-                  className="social"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img src="./images/imdb.png" alt="#" />
-                </a>
-                <a
-                  href={el.twitter}
-                  className="social"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img src="./images/twitter2.png" alt="#" />
-                </a>
+            <Col xs={6} md={3} key={i} className="py-4 py-md-0">
+              <div className="team-box d-flex flex-column justify-content-between align-items-center">
+                <div className="d-flex flex-column justify-content-start align-items-center second-team-box">
+                  <img src={el.image} alt="#" className="team-image" />
+                  <div className="position py-2">{el.position}</div>
+                  <span className="name">{el.name}</span>
+                </div>
+                <button className="button">ReadMore</button>
               </div>
             </Col>
           ))}
         </Row>
       </Col>
+      <div className="overlay"></div>
     </Wrapper>
   );
 };

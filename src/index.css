@@ -5,14 +5,16 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #000 !important;
-
-  font-family: "Montserrat", sans-serif !important;
+  overflow-x: hidden !important;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+* {
+  margin: 0;
+  padding: 0;
 }
 p,
 h1,
@@ -20,27 +22,16 @@ h2,
 h3,
 h4,
 h5,
-h5 {
-  box-sizing: border-box;
+h6 {
   margin: 0 !important;
 }
-a {
-  text-decoration: none !important;
-}
-.copyright {
-  font-family: "Montserrat", sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 24px;
-  /* identical to box height, or 150% */
-
-  letter-spacing: 0.02em;
-
-  color: #b4b3bc;
-  text-align: center;
-  padding: 15px 0;
-}
-.trash {
-  color: #fff;
+.overlay {
+  background: rgba(0, 0, 0, 0.9);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: -1;
 }

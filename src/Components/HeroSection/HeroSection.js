@@ -1,142 +1,96 @@
-import React, { useState } from "react";
-import MyCountDown from "../MyCountDown/MyCountDown";
+import React from "react";
+import { Row, Col } from "react-bootstrap";
 import styled from "styled-components";
 const Wrapper = styled.div`
-  padding: 300px 25px;
-  background: url(./images/hero.png) #000;
-  background-size: cover;
-  background-position: center;
+  background: url(./images/herobg.jpg);
   background-repeat: no-repeat;
-
-  color: #fff;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  padding-top: 180px;
 
   .title {
-    font-weight: normal;
-    font-size: 85px;
-    line-height: 100%;
-    text-align: center;
-    letter-spacing: 0.02em;
-    color: #ffffff;
-    text-shadow: 0px 2px 8px rgba(64, 63, 63, 0.3), 0px 4px 8px #000000;
-  }
-  .panda {
-    color: #0bd488;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 156%;
+    color: #2fd4e7;
   }
   .text {
-    font-style: normal;
+    font-family: Poppins;
+    font-style: italic;
     font-weight: 500;
-    font-size: 18px;
-    line-height: 170%;
-    /* or 31px */
-    padding-top: 20px;
-    text-align: center;
-
-    color: #ffffff;
-
-    text-shadow: 0px 2px 8px rgba(33, 33, 33, 0.3);
-  }
-  .socialContainer {
-    display: grid;
-    grid-template-columns: repeat(4, 140px);
-    justify-content: center;
-  }
-  .social {
-    display: flex;
-    jusitfy-content: center;
-    align-items: center;
-    padding: 12px 18px;
-    border: 1px solid #0bd488;
-    border-radius: 8px;
-    font-family: TT Firs Neue;
-    font-style: normal;
-    font-weight: normal;
     font-size: 16px;
-    line-height: 100%;
-    /* identical to box height, or 16px */
-
+    line-height: 156%;
+    text-align: center;
     color: #ffffff;
-    background: rgba(255, 255, 255, 0.2);
+    padding: 25px 0;
   }
-
-  .active {
-    background: #0bd488;
-    color: #fff;
-    border: 1px solid #0bd488;
+  .image {
+    width: 100%;
   }
-  .name {
-    padding-left: 8px;
+  .plato {
+    color: #f99c00;
   }
-  @media only screen and (max-width: 1399px) {
+  @media only screen and (max-width: 991px) {
     .title {
-      font-size: 65px;
+      font-size: 36px;
     }
-
-    .text {
-      font-size: 18px;
-    }
-  }
-  @media only screen and (max-width: 575px) {
-    height: auto;
-    padding: 200px 25px;
     br {
       display: none;
     }
+  }
+  @media only screen and (max-width: 767px) {
     .title {
-      font-size: 50px;
+      text-align: center;
     }
-    .text {
-      font-size: 16px;
+    .image {
+      width: 70%;
     }
-    .socialContainer {
-      display: grid;
-      grid-template-columns: repeat(2, 140px);
-      justify-content: center;
-    }
-    .social {
-      margin-bottom: 20px;
+  }
+  @media only screen and (max-width: 520px) {
+    .image {
+      width: 100%;
     }
   }
   @media only screen and (max-width: 400px) {
     .title {
-      font-size: 42px;
+      font-size: 28px;
     }
-    height: auto;
-    padding: 170px 10px;
+    .text {
+      font-size: 14px;
+    }
   }
 `;
 const HeroSection = () => {
-  const [value, setValue] = useState(0);
-  const socialArray = [
-    { name: "Discord", icon: "/images/discord.png" },
-    { name: "OpenSea", icon: "/images/opensea.png" },
-    { name: "Twitter", icon: "/images/twitter.png" },
-    { name: "Instagram", icon: "/images/instagram.png" },
-  ];
   return (
-    <Wrapper id="hero" data-aos="fade-up">
-      <h1 className="title" data-aos="fade-down">
-        TRASH <span className="panda">PANDA </span>
-        GANG
-      </h1>
-      <p className="text" data-aos="fade-down">
-        Trash Panda Gang NFT will produce a unique collection of 7777 pieces.{" "}
-        <br />
-        They are going to conquer the Metaverse with their whole Gang.
-      </p>
-      <MyCountDown dayCount="April 05, 2022 20:00:00" />
-
-      <div className="socialContainer" data-aos="fade-up">
-        {socialArray.map((el, i) => (
-          <div
-            key={i}
-            className={value === i ? "social active mx-2" : "social  mx-2"}
-            onClick={() => setValue(i)}
+    <Wrapper>
+      <Col xs={11} xxl={10} className="mx-auto">
+        <Row>
+          <Col
+            md={7}
+            xxl={6}
+            className="d-flex justify-content-center align-items-center py-3 py-md-0"
           >
-            <img src={el.icon} alt="#" />
-            <p className="name">{el.name}</p>
-          </div>
-        ))}
-      </div>
+            <h2 className="title">
+              CONNECTING CRYPTO INVESTORS WITH METEORITE HUNTERS
+            </h2>
+          </Col>
+          <Col
+            md={5}
+            xxl={6}
+            className="d-flex justify-content-center align-items-center py-3 py-md-0"
+          >
+            <img src="./images/hero.png" alt="#" className="image" />
+          </Col>
+        </Row>
+        <p className="text">
+          “Those who are able to see beyond the shadows and lies of their
+          culture will never be understood, <br /> let alone believed, by the
+          masses.” ...<span className="plato">Plato</span>
+        </p>
+      </Col>
     </Wrapper>
   );
 };
