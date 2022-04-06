@@ -253,7 +253,7 @@ const RoadMap = () => {
               key={i}
               icon={
                 <div className="star">
-                  <img src="./images/star.png" alt='image' />
+                  <img src="./images/star.png" alt='starspangled awesome' />
                 </div>
               }
             >
