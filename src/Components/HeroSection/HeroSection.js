@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Row, Col } from "react-bootstrap";
 import MyCountDown from "../MyCountDown/MyCountDown";
 import styled from "styled-components";
 const Wrapper = styled.div`

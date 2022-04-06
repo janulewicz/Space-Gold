@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { Row, Col } from "react-bootstrap";
-import { CgShapeHexagon } from "react-icons/cg";
+import { Col } from "react-bootstrap";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
@@ -254,7 +253,7 @@ const RoadMap = () => {
               key={i}
               icon={
                 <div className="star">
-                  <img src="./images/star.png" />
+                  <img src="./images/star.png" alt='image' />
                 </div>
               }
             >
