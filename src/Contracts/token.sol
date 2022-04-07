@@ -757,7 +757,7 @@ contract SpaceGoldCoin is Context, IERC20, Ownable {
     mapping(address => mapping(address => uint256)) private _allowances;
     mapping(address => bool) private _isExcludedFromFee;
 
-    string constant private _name = "SpaceGoldCoin";
+    string constant private _name = "Space Gold Coin";
     string constant private _symbol = "SPACE";
     uint8 constant private _decimals = 9;
     uint256 constant private Total = 100_000_000 * (10**_decimals);
