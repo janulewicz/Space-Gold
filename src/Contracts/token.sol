@@ -764,13 +764,13 @@ contract SpaceGoldCoin is Context, IERC20, Ownable {
 
     address public LiquifyWallet;
     address public MarketingWallet;
-    address public StakingPool;
+    address public TeamPool;
 
-    uint256 public StakingBuyPoolTax = 3;
+    uint256 public TeamBuyPoolTax = 3;
     uint256 public LiquidityBuyPoolTax = 5;
     uint256 public MarketingBuyTax = 2;
 
-    uint256 public StakingSellPoolTax = 3;
+    uint256 public TeamSellPoolTax = 3;
     uint256 public LiquiditySellPoolTax = 5;
     uint256 public MarketingSellTax = 2;
 
@@ -794,12 +794,12 @@ contract SpaceGoldCoin is Context, IERC20, Ownable {
     address public constant WBNB = 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c;
 
     constructor(
-        address _stakingPool,
+        address _TeamPool,
         address _MarketingWallet,
         address _LiquifyWallet
     ) {
         MarketingWallet = _MarketingWallet;
-        StakingPool = _stakingPool;
+        TeamPool = _TeamPool;
         LiquifyWallet = _LiquifyWallet;
 
         IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(router);
@@ -997,8 +997,8 @@ contract SpaceGoldCoin is Context, IERC20, Ownable {
         LiquifyWallet = _address;
     }
 
-    function setStakingAddress(address _pool) external onlyOwner {
-        StakingPool = _pool;
+    function setTeamAddress(address _pool) external onlyOwner {
+        TeamPool = _pool;
     }
 
     function setMarketingWallet(address _address) external onlyOwner {
@@ -1006,34 +1006,34 @@ contract SpaceGoldCoin is Context, IERC20, Ownable {
     }
 
     // Changing the Taxes
-    function setStakingBuyPoolTax(uint256 _stakingTax) external onlyOwner {
-        StakingBuyPoolTax = _stakingTax;
-        require(LiquidityBuyPoolTax + StakingBuyPoolTax + MarketingSellTax <= 30, "Tax too high");
+    function setTeamBuyPoolTax(uint256 _TeamTax) external onlyOwner {
+        TeamBuyPoolTax = _TeamTax;
+        require(LiquidityBuyPoolTax + TeamBuyPoolTax + MarketingSellTax <= 8, "Tax too high");
     }
 
     function setLiquidityBuyPoolTax(uint256 _liquidityPoolTax) external onlyOwner {
         LiquidityBuyPoolTax = _liquidityPoolTax;
-        require(LiquidityBuyPoolTax + StakingBuyPoolTax + MarketingSellTax <= 30, "Tax too high");
+        require(LiquidityBuyPoolTax + TeamBuyPoolTax + MarketingSellTax <= 8, "Tax too high");
     }
 
     function marketingBuyTax(uint256 _marketingTax) external onlyOwner {
         MarketingBuyTax = _marketingTax;
-        require(LiquidityBuyPoolTax + StakingBuyPoolTax + MarketingBuyTax <= 30, "Tax too high");
+        require(LiquidityBuyPoolTax + TeamBuyPoolTax + MarketingBuyTax <= 8, "Tax too high");
     }
 
-    function setStakingSellPoolTax(uint256 _stakingTax) external onlyOwner {
-        StakingSellPoolTax = _stakingTax;
-        require(StakingSellPoolTax + LiquiditySellPoolTax + MarketingSellTax <= 30, "Tax too high");
+    function setTeamSellPoolTax(uint256 _TeamTax) external onlyOwner {
+        TeamSellPoolTax = _TeamTax;
+        require(TeamSellPoolTax + LiquiditySellPoolTax + MarketingSellTax <= 8, "Tax too high");
     }
 
     function setLiquiditySellPoolTax(uint256 _liquidityPoolTax) external onlyOwner {
         LiquiditySellPoolTax = _liquidityPoolTax;
-        require(StakingSellPoolTax + LiquiditySellPoolTax + MarketingSellTax <= 30, "Tax too high");
+        require(TeamSellPoolTax + LiquiditySellPoolTax + MarketingSellTax <= 8, "Tax too high");
     }
 
     function marketingSellTax(uint256 _marketingTax) external onlyOwner {
         MarketingSellTax = _marketingTax;
-        require(StakingSellPoolTax + LiquiditySellPoolTax + MarketingSellTax <= 30, "Tax too high");
+        require(TeamSellPoolTax + LiquiditySellPoolTax + MarketingSellTax <= 8, "Tax too high");
     }
 
     function _tokenTransferStandard(
@@ -1041,30 +1041,30 @@ contract SpaceGoldCoin is Context, IERC20, Ownable {
         address recipient,
         uint256 amount
     ) internal virtual {
-        uint256 StakingPoolAmount = 0;
+        uint256 TeamPoolAmount = 0;
         uint256 marketingAmount = 0;
         uint256 AddToLiquidityAmount = 0;
 
         if (sender == uniswapV2Pair || sender == uniswapV2BnbPair) {
-            StakingPoolAmount = amount * StakingBuyPoolTax / 100;
+            TeamPoolAmount = amount * TeamBuyPoolTax / 100;
             marketingAmount = amount * MarketingBuyTax / 100;
             AddToLiquidityAmount = amount * LiquidityBuyPoolTax / 100;
         } else {
             // sell tax & transfer tax the same
-            StakingPoolAmount = amount * StakingSellPoolTax / 100;
+            TeamPoolAmount = amount * TeamSellPoolTax / 100;
             marketingAmount = amount * MarketingSellTax / 100;
             AddToLiquidityAmount = amount * LiquiditySellPoolTax / 100;
         }
 
         _tOwned[sender] -= amount;
     
-        _tOwned[StakingPool] += StakingPoolAmount;
+        _tOwned[TeamPool] += TeamPoolAmount;
         _tOwned[MarketingWallet] += marketingAmount;
         _tOwned[LiquifyWallet] += AddToLiquidityAmount;
 
-        _tOwned[recipient] += amount - (StakingPoolAmount + marketingAmount + AddToLiquidityAmount);
+        _tOwned[recipient] += amount - (TeamPoolAmount + marketingAmount + AddToLiquidityAmount);
 
-        emit Transfer(sender, StakingPool, StakingPoolAmount);
+        emit Transfer(sender, TeamPool, TeamPoolAmount);
         emit Transfer(sender, MarketingWallet, marketingAmount);
         emit Transfer(sender, LiquifyWallet, AddToLiquidityAmount);
         emit Transfer(sender, recipient, amount);
