@@ -64,7 +64,6 @@ const Header = () => {
     { name: "Roadmap", to: "roadmap" },
     { name: "Litepaper", to: "/litepaper Spacegold.pdf" , pdf :true},
     { name: "Whitepaper", to: "/SPacegold Whitepaper1.pdf" , pdf :true},
-    { name: "About Us", to: "about" },
   ];
 
   return (
