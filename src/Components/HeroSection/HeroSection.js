@@ -65,7 +65,7 @@ const Wrapper = styled.div`
 `;
 const HeroSection = () => {
   return (
-    <Wrapper>
+    <Wrapper id="HeroSection">
       <Col xs={11} xxl={10} className="mx-auto">
         <Row>
           <Col

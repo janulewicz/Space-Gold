@@ -37,7 +37,7 @@ const Wrapper = styled.div`
 `;
 const RoadMap = () => {
   return (
-    <Wrapper>
+    <Wrapper id="roadmap">
       <Col xs={11} xxl={10} className="mx-auto">
         <h2 className="title">ROADMAP</h2>
         <img src="./images/roadmap.png" alt="#" className="image" />
