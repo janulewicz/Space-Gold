@@ -760,7 +760,7 @@ contract SpaceGoldCoin is Context, IERC20, Ownable {
     string constant private _name = "SpaceGoldCoin";
     string constant private _symbol = "SPACE";
     uint8 constant private _decimals = 9;
-    uint256 constant private Total = 1_000_000_000 * (10**_decimals);
+    uint256 constant private Total = 100_000_000 * (10**_decimals);
 
     address public LiquifyWallet;
     address public MarketingWallet;
@@ -786,12 +786,13 @@ contract SpaceGoldCoin is Context, IERC20, Ownable {
     address public immutable uniswapV2BnbPair;
 
     //testnet
-    // address public BUSD = 0x78867BbEeF44f2326bF8DDd1941a4439382EF2A7;
-    // address public router = 0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3;
+     address public BUSD = 0x78867BbEeF44f2326bF8DDd1941a4439382EF2A7;
+     address public router = 0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3;
+     address public WBNB = 0x094616f0bdfb0b526bd735bf66eca0ad254ca81f;
     //mainnet
-    address public constant BUSD = 0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56;
-    address public constant router = 0x10ED43C718714eb63d5aA57B78B54704E256024E;
-    address public constant WBNB = 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c;
+    //address public constant BUSD = 0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56;
+    //address public constant router = 0x10ED43C718714eb63d5aA57B78B54704E256024E;
+    //address public constant WBNB = 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c;
 
     constructor(
         address _TeamPool,
