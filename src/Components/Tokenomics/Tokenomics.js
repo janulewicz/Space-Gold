@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   position: relative;
   padding: 25px 0;
   .title {
-    font-family: Zilla Slab;
+    font-family: Poppins;
     font-style: normal;
     font-weight: 500;
     font-size: 48px;
@@ -22,7 +22,7 @@ const Wrapper = styled.div`
     width: 100%;
   }
   .text {
-    font-family: Zilla Slab;
+    font-family: Poppins;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
