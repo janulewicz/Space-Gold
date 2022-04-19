@@ -14,7 +14,7 @@ const Wrapper = styled.div`
   background: #17120f;
   z-index: 5;
   .menuItem {
-    font-family: Poppins;
+    font-family: Zilla Slab;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -26,7 +26,7 @@ const Wrapper = styled.div`
     cursor: pointer;
   }
   .button {
-    font-family: Poppins;
+    font-family: Zilla Slab;
     font-style: normal;
     font-weight: 600;
     font-size: 16px;

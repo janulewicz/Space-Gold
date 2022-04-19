@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   padding: 25px 0;
 
   .text {
-    font-family: Poppins;
+    font-family: Zilla Slab;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
