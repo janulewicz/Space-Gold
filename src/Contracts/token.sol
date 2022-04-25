@@ -779,7 +779,7 @@ contract SpaceGoldCoin is Context, IERC20, Ownable {
     uint256 private constant maxTxAmt = 500_000 * (10**_decimals);
     bool public pauseBuying = true;
 
-    IAntiSnipe public immutable antisnipe;
+    IAntiSnipe public  antisnipe;
 
     IUniswapV2Router02 public immutable uniswapV2Router;
     address public immutable uniswapV2Pair;
@@ -788,7 +788,7 @@ contract SpaceGoldCoin is Context, IERC20, Ownable {
     //testnet
      address public BUSD = 0x78867BbEeF44f2326bF8DDd1941a4439382EF2A7;
      address public router = 0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3;
-     address public WBNB = 0x094616f0bdfb0b526bd735bf66eca0ad254ca81f;
+     address public WBNB = 0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd;
     //mainnet
     //address public constant BUSD = 0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56;
     //address public constant router = 0x10ED43C718714eb63d5aA57B78B54704E256024E;
@@ -821,9 +821,9 @@ contract SpaceGoldCoin is Context, IERC20, Ownable {
         //exclude owner and this contract from fee
         _isExcludedFromFee[address(this)] = true;
 
-        antisnipe = IAntiSnipe(0xc5d1A68ac97f30e5977222Fec331CAe7bE667EC7);
-        antisnipe.setTokenOwner(msg.sender, address(this), uniswapV2Pair);
-        antisnipe.addPair(uniswapV2BnbPair);
+        // antisnipe = IAntiSnipe(0xc5d1A68ac97f30e5977222Fec331CAe7bE667EC7);
+        // antisnipe.setTokenOwner(msg.sender, address(this), uniswapV2Pair);
+        // antisnipe.addPair(uniswapV2BnbPair);
 
         _tOwned[msg.sender] = Total;
         emit Transfer(address(0), _msgSender(), Total);
