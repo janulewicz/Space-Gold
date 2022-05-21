@@ -6,6 +6,7 @@ import RoadMap from "./Components/Roadmap/Roadmap";
 import Tokenomics from "./Components/Tokenomics/Tokenomics";
 import Team from "./Components/Team/Team";
 import Header from "./Components/Header/Header";
+import React from 'react';
 function App() {
   const problem = [
     "The museum grade antiques barrier to entry prevents thousands of investors from accessing the more exclusive assets that will benefit them in the long run.",
