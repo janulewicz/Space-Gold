@@ -62,8 +62,8 @@ const Header = () => {
   const menus = [
     { name: "HOME", to: "HeroSection"},
     { name: "Roadmap", to: "roadmap" },
-    { name: "Litepaper", to: "/litepaper Spacegold.pdf" , pdf :true},
-    { name: "Whitepaper", to: "/SPacegold Whitepaper1.pdf" , pdf :true},
+    { name: "Litepaper", to: "/litepaper-21-05-2022.pdf" , pdf :true},
+    { name: "Whitepaper", to: "/whitepaper-21-05-2022.pdf" , pdf :true},
   ];
 
   return (
