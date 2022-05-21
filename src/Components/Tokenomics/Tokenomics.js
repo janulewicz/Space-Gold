@@ -25,11 +25,18 @@ const Wrapper = styled.div`
     font-family: Poppins;
     font-style: normal;
     font-weight: normal;
-    font-size: 18px;
-    line-height: 170%;
+    font-size: 17px;
+    line-height: 130%;
     color: #ffffff;
     padding: 12px 0;
   }
+  .yellow {
+    color: #fff84d;
+  }
+  .green {
+    color: #24ff20;
+  }
+
   @media only screen and (max-width: 991px) {
     .title {
       font-size: 36px;
@@ -46,7 +53,7 @@ const Tokenomics = () => {
   return (
     <Wrapper>
       <Col xs={11} xxl={10} className="mx-auto">
-        <h2 className="title">Tokenomics</h2>
+        <h2 className="title">TOKENOMICS</h2>
         <Row>
           <Col
             md={7}
@@ -61,11 +68,17 @@ const Tokenomics = () => {
             className="d-flex justify-content-center align-items-center"
           >
             <div>
-              <p className="text">RAISING $500K AT IDO</p>
-              <p className="text">100 MILLION COINS</p>
-              <p className="text">PRIVATE SALE PRICE 0.004 USD</p>{" "}
-              <p className="text">FIRST ROUND SALE AT 0.005 USD</p>
-              <p className="text">SECOND ROUND AT 0.006 USD</p>
+              <p className="text">
+              • 100 million max supply
+                <br />• 10% Private sale
+                <br />• Private 0.004 usd
+                <br />• Presale 0.005 usd
+                <br />• Launch 0.006 usd</p><p></p>
+              <p className="yellow">8 % sell tax for 3 months</p>
+    
+              <p className="green"><br />5% buy tax and 5% sell tax for 6 months</p>
+              <p className="green">Taxes go on a 50/50 split to liquidity and marketing</p>
+
             </div>
           </Col>
         </Row>

@@ -118,7 +118,7 @@ const Team = () => {
                   <div className="position py-2">{el.position}</div>
                   <span className="name">{el.name}</span>
                 </div>
-                <button className="button">ReadMore</button>
+                <button className="button">Read More</button>
               </div>
             </Col>
           ))}
