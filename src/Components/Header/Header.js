@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import Button from 'react-bootstrap/Button'
 import { Col } from "react-bootstrap";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
@@ -60,10 +61,10 @@ const Wrapper = styled.div`
 const Header = () => {
   const [sidebar, setSidebar] = useState(false);
   const menus = [
-    { name: "HOME", to: "HeroSection"},
+    { name: "Home", to: "HeroSection" },
     { name: "Roadmap", to: "roadmap" },
-    { name: "Litepaper", to: "/litepaper-21-05-2022.pdf" , pdf :true},
-    { name: "Whitepaper", to: "/whitepaper-21-05-2022.pdf" , pdf :true},
+    { name: "Litepaper", to: "/litepaper-21-05-2022.pdf", pdf: true },
+    { name: "Whitepaper", to: "/whitepaper-21-05-2022.pdf", pdf: true },
   ];
 
   return (
@@ -76,13 +77,11 @@ const Header = () => {
         <img src="./images/logo.png" alt="#" />
         <div className="d-none d-lg-flex align-items-center ">
           {menus.map((el, i) => {
-              if(el.pdf)
-              {
-                return <a key={i} href={el.to} className="menuItem px-3" target='_blank' rel='noopener noreferrer'>{el.name}</a>
-              }
-              else
-              {
-                return <Link
+            if (el.pdf) {
+              return <a key={i} href={el.to} className="menuItem px-3" target='_blank' rel='noopener noreferrer'>{el.name}</a>
+            }
+            else {
+              return <Link
                 to={el.to}
                 spy={true}
                 smooth={true}
@@ -93,9 +92,18 @@ const Header = () => {
                 key={i} >
                 {el.name}
               </Link>
-              }
-            })}
-          <button className="button">Connect Wallet</button>
+            }
+          })}
+          <Link to="contact"
+            spy={true}
+            smooth={true}
+            offset={-150}
+            duration={250}
+            activeClass="active"
+            className="menuItem px-3"
+            key="1" >
+            <Button variant="info" href="#">CONNECT WALLET</Button>{' '}</Link>
+
         </div>
         <div
           className="hamburger d-flex d-lg-none"
@@ -115,27 +123,32 @@ const Header = () => {
             }
           >
             {menus.map((el, i) => {
-              if(el.pdf)
-              {
+              if (el.pdf) {
                 return <a key={i} href={el.to} className="menuItem px-3 py-3" target='_blank' rel='noopener noreferrer'>{el.name}</a>
               }
-              else
-              {
+              else {
                 return <Link
-                to={el.to}
-                spy={true}
-                smooth={true}
-                offset={-150}
-                duration={250}
-                activeClass="active"
-                className="menuItem px-3 py-3"
-                key={i} >
-                {el.name}
-              </Link>
+                  to={el.to}
+                  spy={true}
+                  smooth={true}
+                  offset={-150}
+                  duration={250}
+                  activeClass="active"
+                  className="menuItem px-3 py-3"
+                  key={i} >
+                  {el.name}
+                </Link>
               }
             })}
-
-            <button className="button my-3">Connect Wallet</button>
+            <Link to="contact"
+              spy={true}
+              smooth={true}
+              offset={-150}
+              duration={250}
+              activeClass="active"
+              className="menuItem px-3"
+              key="1" >
+              <Button variant="info" href="#">CONNECT WALLET</Button>{' '}</Link>
           </div>
         )}
       </Col>
