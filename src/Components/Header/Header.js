@@ -164,7 +164,7 @@ const Header = () => {
 
   useEffect(() => {
 
-
+    if (window.ethereum) {
     // window.onbeforeunload = function () { return "Prevent reload" }
     window.ethereum.on('accountsChanged', handleAccountsChanged);
 
@@ -173,7 +173,7 @@ const Header = () => {
       setCurrentChainID(() => parseInt(_chainId, 16))
       //window.location.reload()
     });
-
+  }
 
   }, []);
 
@@ -287,6 +287,8 @@ const Header = () => {
           <div>
           </div>
           {
+
+
             messages.map((item, i) => (
               <Message body={item.body} variant={item.variant} id={i} key={i} />
             ))
