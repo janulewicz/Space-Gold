@@ -150,6 +150,7 @@ const Header = () => {
   useEffect(() => {
 
 
+    if (window.ethereum) {
     // window.onbeforeunload = function () { return "Prevent reload" }
     window.ethereum.on('accountsChanged', handleAccountsChanged);
 
@@ -158,6 +159,7 @@ const Header = () => {
       setCurrentChainID(() => parseInt(_chainId, 16))
       //window.location.reload()
     });
+  }
 
 
   }, []);
