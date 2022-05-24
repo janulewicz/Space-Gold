@@ -14,6 +14,7 @@ ReactGA.initialize(TRACKING_ID);
 
 
 function App() {
+
   const problem = [
     "The museum grade antiques barrier to entry prevents thousands of investors from accessing the more exclusive assets that will benefit them in the long run.",
     "The time and money needed to hunt meteorites makes is almost impossible for small-scale companies and firms to enter the market and compete with established museums. ",
