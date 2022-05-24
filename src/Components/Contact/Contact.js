@@ -74,7 +74,7 @@ const Contact = () => {
       <Col xs={11} xxl={10} className="mx-auto">
         <p className="title">CONTACT</p>
         <p className="text">
-          
+
         </p>
         <p className="text">
           Join our communities to find out the latest Space Gold news...

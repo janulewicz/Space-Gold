@@ -163,7 +163,7 @@ const Header = () => {
   }, []);
 
   const shortAddr = () => {
-    return `${currentAccount.substr(0, 4)}...${currentAccount.substring(currentAccount.length - 4, currentAccount.length)}`
+    return `${currentAccount.substring(0, 4)}...${currentAccount.substring(currentAccount.length - 4, currentAccount.length)}`
   }
 
 
