@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import ChainLogo from '../../assets/ChainLogos'
 import styled from "styled-components";
-import { Col, Button, Alert } from 'react-bootstrap'
+import { Col, Button } from 'react-bootstrap'
+import { Alert, Snackbar } from '@mui/material';
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
-import { Link } from "react-scroll";
+import { Link, animateScroll as scroll } from "react-scroll";
 // import Web3 from 'web3'
 import detectEthereumProvider from '@metamask/detect-provider';
+
+
 
 const Wrapper = styled.div`
   display: flex;
@@ -28,14 +31,21 @@ const Wrapper = styled.div`
     text-decoration: none;
     cursor: pointer;
   }
+  .message-list {
+    font-family: Poppins;
+    font-style: bold;
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 20px;
+    text-transform: uppercase;
+    color: #ffffff;
+  }
   .button {
     font-family: Poppins;
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
     line-height: 24px;
-    /* identical to box height */
-
     color: #ffffff;
     outline: 0;
     border: 0;
@@ -60,6 +70,9 @@ const Wrapper = styled.div`
   }
 `;
 
+let vertical = "top"
+let horizontal = "right"
+
 const Header = () => {
   const [currentAccount, setCurrentAccount] = useState('')
   const [isLogged, setIsLogged] = useState(false)
@@ -69,7 +82,7 @@ const Header = () => {
 
     const chainId = props.chainId
 
- 
+
     let chainLogo
     let chainName
 
@@ -88,9 +101,9 @@ const Header = () => {
 
     return (
 
-  
-        <img src={chainLogo} width={14} alt={chainName} />
-   
+
+      <img src={chainLogo} width={14} alt={chainName} />
+
 
     )
   }
@@ -115,15 +128,16 @@ const Header = () => {
       if (err.code === 4001) {
         // EIP-1193 userRejectedRequest error
         // If this happens, the user rejected the connection request.
-        console.log('Please connect to MetaMask.')
-        setMessage(messages => [...messages, { head: "User Rejected Request", body: 'Please connect to MetaMask.', variant: 'info' }])
+        setMessage(messages => [...messages, { body: 'PLEASE CONNECT TO METAMASK.', variant: 'warning' }])
+        scroll.scrollToBottom();
 
       } else if (err.code === -32002) {
         console.log('Please unlock MetaMask.')
-        setMessage(messages => [...messages, { head: "User Request Pending", body: 'Please unlock MetaMask and try agin.', variant: 'info' }])
+        setMessage(messages => [...messages, { body: 'UNLOCK METAMASK AND RETRY.', variant: 'warning' }])
+        scroll.scrollToBottom();
       } else {
         console.error(err);
-        setMessage(messages => [...messages, { head: "Error", body: err.message, variant: 'info' }])
+        setMessage(messages => [...messages, { body: err.message, variant: 'info' }])
       }
 
     }
@@ -138,12 +152,13 @@ const Header = () => {
 
     if (accounts.length === 0) {
       // MetaMask is locked or the user has not connected any accounts
-      setMessage(messages => [...messages, { head: "User Rejected Request", body: 'Please connect to MetaMask.', variant: 'info' }])
+      setMessage(messages => [...messages, { body: 'PLEASE CONNECT TO METAMASK.', variant: 'warning' }])
+      scroll.scrollToBottom();
     } else if (accounts[0] !== currentAccount) {
       console.log(accounts[0])
       console.log(messages);
       setCurrentAccount(() => accounts[0])
-      setMessage(messages => [...messages, { head: "Account Changed", body: `addres: ${accounts[0]}`, variant: 'warning' }])
+      setMessage(messages => [...messages, { body: `ACCOUNT CHANGED TO: ${accounts[0]}`, variant: 'warning' }])
     }
   }
 
@@ -174,13 +189,14 @@ const Header = () => {
 
     if (!provider) {
 
-      setMessage(messages => [...messages, { head: "Wallet not found", body: `Please install MetaMask!`, variant: 'warning' }])
+      setMessage(messages => [...messages, { body: `PLEASE INSTALL METAMASK!`, variant: 'warning' }])
+      scroll.scrollToBottom();
 
     } else {
 
       const address = await ConnectWallet()
       if (address)
-        setMessage(messages => [...messages, { head: "User Login", body: `addres: ${address}`, variant: 'success' }])
+        setMessage(messages => [...messages, { body: `ADDRESS: ${address}`, variant: 'success' }])
 
     }
 
@@ -199,14 +215,18 @@ const Header = () => {
       setMessage(messages.filter((item, index) => index !== props.id))
     }
 
+    const open = () => {
+      setShow(true)
+      setMessage(messages.filter((item, index) => index !== props.id))
+    }
+
     if (show) {
       return (
-        <Alert variant={props.variant} onClose={close} dismissible>
-          <Alert.Heading>{props.head}</Alert.Heading>
-          <p>
+        <Snackbar open={open} anchorOrigin={{ vertical, horizontal }} autoHideDuration={6000} onClose={close}>
+          <Alert onClose={close} severity={props.variant} sx={{ width: '100%', height: '110px' }}>
             {props.body}
-          </p>
-        </Alert>
+          </Alert>
+        </Snackbar>
       )
     } else {
       return (<></>)
@@ -266,17 +286,15 @@ const Header = () => {
             <Button variant="info" href="#">CONNECT WALLET</Button>{' '}</Link> */}
           <div>
           </div>
-          <div className="message-list" >
-            {
-              messages.map((item, i) => (
-                <Message head={item.head} body={item.body} variant={item.variant} id={i} key={i} />
-              ))
-            }
-          </div>
+          {
+            messages.map((item, i) => (
+              <Message body={item.body} variant={item.variant} id={i} key={i} />
+            ))
+          }
           <div>
             <Chain chainId={currentChainID} />{' '}
             <Button className="connect-button" disabled={isLogged} onClick={SignIn} variant="info">{isLogged ? shortAddr() : "CONNECT WALLET"}</Button>{' '}
-            <Button onClick={SignOut} style={{ visibility: isLogged ? "visible" : "hidden" }} variant="danger">X</Button>
+            <Button onClick={SignOut} style={{ visibility: isLogged ? "visible" : "hidden" }} variant="danger">DISCONNECT</Button>
           </div>
         </div>
         <div
@@ -323,20 +341,21 @@ const Header = () => {
               className="menuItem px-3"
               key="1" >
               <Button variant="info" href="#">CONNECT WALLET</Button>{' '}</Link> */}
-              <div className="message-list" >
-          {
-            messages.map((item, i) => (
-              <Message head={item.head} body={item.body} variant={item.variant} id={i} key={i} />
-            ))
-          }
-        </div>
-        <div>
-          <Chain chainId={currentChainID} />{' '}
-          <Button className="connect-button" disabled={isLogged} onClick={SignIn} variant="info">{isLogged ? shortAddr() : "CONNECT WALLET"}</Button>{' '}
-          <Button onClick={SignOut} style={{ visibility: isLogged ? "visible" : "hidden" }} variant="danger">X</Button>
+
+            {
+              messages.map((item, i) => (
+                <Message body={item.body} variant={item.variant} id={i} key={i} />
+              ))
+            }
+            <div>
+              <Button className="connect-button" disabled={isLogged} onClick={SignIn} variant="info">{isLogged ? shortAddr() : "CONNECT WALLET"}</Button>
+              <p></p>
+              <Chain chainId={currentChainID} />{' '}
+              <p></p>
+              <Button onClick={SignOut} style={{ visibility: isLogged ? "visible" : "hidden" }} variant="danger">DISCONNECT</Button>
+            </div>
           </div>
-          </div>
-         
+
         )}
       </Col>
     </Wrapper>
