@@ -5,7 +5,7 @@ import { Col, Button, Alert } from 'react-bootstrap'
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
 import { Link } from "react-scroll";
-import Web3 from 'web3'
+// import Web3 from 'web3'
 import detectEthereumProvider from '@metamask/detect-provider';
 
 const Wrapper = styled.div`
@@ -69,8 +69,8 @@ const Header = () => {
 
     const chainId = props.chainId
 
+    // let variant
     let chainLogo
-    let variant
     let chainName
 
     switch (chainId) {
@@ -170,7 +170,7 @@ const Header = () => {
   const SignIn = async () => {
     //Detect Provider
     const provider = await detectEthereumProvider()
-    const web3 = new Web3(provider)
+    // const web3 = new Web3(provider)
 
     if (!provider) {
 
