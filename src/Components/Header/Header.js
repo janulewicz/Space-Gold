@@ -64,12 +64,12 @@ const Header = () => {
   const [currentAccount, setCurrentAccount] = useState('')
   const [isLogged, setIsLogged] = useState(false)
   const [currentChainID, setCurrentChainID] = useState(-1)
-
+  let variant
   const Chain = (props) => {
 
     const chainId = props.chainId
 
-    // let variant
+ 
     let chainLogo
     let chainName
 
@@ -98,7 +98,7 @@ const Header = () => {
 
   const ConnectWallet = async () => {
 
-    console.log("Try Connect");
+    console.log(variant);
 
     try {
       await window.ethereum.enable();
