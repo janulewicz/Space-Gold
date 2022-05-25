@@ -165,15 +165,15 @@ const Header = () => {
   useEffect(() => {
 
     if (window.ethereum) {
-    // window.onbeforeunload = function () { return "Prevent reload" }
-    window.ethereum.on('accountsChanged', handleAccountsChanged);
+      // window.onbeforeunload = function () { return "Prevent reload" }
+      window.ethereum.on('accountsChanged', handleAccountsChanged);
 
-    window.ethereum.on('chainChanged', (_chainId) => {
-      console.log(_chainId);
-      setCurrentChainID(() => parseInt(_chainId, 16))
-      //window.location.reload()
-    });
-  }
+      window.ethereum.on('chainChanged', (_chainId) => {
+        console.log(_chainId);
+        setCurrentChainID(() => parseInt(_chainId, 16))
+        //window.location.reload()
+      });
+    }
 
   }, []);
 
@@ -188,16 +188,16 @@ const Header = () => {
     // const web3 = new Web3(provider)
 
     if (!provider) {
-
-      setMessage(messages => [...messages, { body: `PLEASE INSTALL METAMASK!`, variant: 'warning' }])
+      setMessage(messages => [...messages, { body: "PLEASE INSTALL METAMASK!", variant: 'warning' }])
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        // open the deeplink page 
+        window.open("https://metamask.app.link/dapp/deploy-preview-6--lucent-bienenstitch-e3bf48.netlify.app")
+      }
       scroll.scrollToBottom();
-
     } else {
-
       const address = await ConnectWallet()
       if (address)
         setMessage(messages => [...messages, { body: `ADDRESS: ${address}`, variant: 'success' }])
-
     }
 
   }
