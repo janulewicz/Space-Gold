@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import styled from "styled-components";
-import Button from 'react-bootstrap/Button'
 import { Col } from "react-bootstrap";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
 import { Link } from "react-scroll";
+import Wallet from '../Wallet/Wallet';
+
 
 const Wrapper = styled.div`
   display: flex;
@@ -94,21 +95,13 @@ const Header = () => {
               </Link>
             }
           })}
-          <Link to="contact"
-            spy={true}
-            smooth={true}
-            offset={-150}
-            duration={250}
-            activeClass="active"
-            className="menuItem px-3"
-            key="1" >
-            <Button variant="info" href="#">CONNECT WALLET</Button>{' '}</Link>
+            <Wallet />
 
         </div>
         <div
           className="hamburger d-flex d-lg-none"
           onClick={() => setSidebar((prev) => !prev)}
-        >
+        > 
           {sidebar ? (
             <IoMdClose color="#fff" size="30" />
           ) : (
@@ -121,7 +114,7 @@ const Header = () => {
             className={
               "sidebar d-flex  d-lg-none align-items-center  flex-column justify-content-center "
             }
-          >
+          ><Wallet />
             {menus.map((el, i) => {
               if (el.pdf) {
                 return <a key={i} href={el.to} className="menuItem px-3 py-3" target='_blank' rel='noopener noreferrer'>{el.name}</a>
@@ -140,15 +133,6 @@ const Header = () => {
                 </Link>
               }
             })}
-            <Link to="contact"
-              spy={true}
-              smooth={true}
-              offset={-150}
-              duration={250}
-              activeClass="active"
-              className="menuItem px-3"
-              key="1" >
-              <Button variant="info" href="#">CONNECT WALLET</Button>{' '}</Link>
           </div>
         )}
       </Col>

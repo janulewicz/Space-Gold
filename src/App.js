@@ -1,4 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import { SnackbarProvider } from 'notistack';
+import { MetaMaskProvider } from "metamask-react";
 import HeroSection from "./Components/HeroSection/HeroSection";
 import HeroNext from "./Components/HeroNext/HeroNext";
 import ProblemAndSolution from "./Components/ProblemAndSolution/ProblemAndSolution";
@@ -9,11 +11,13 @@ import Team from "./Components/Team/Team";
 import Header from "./Components/Header/Header";
 import React from 'react';
 import ReactGA from 'react-ga';
-const TRACKING_ID = "G-46126YGGR3"; 
+const TRACKING_ID = "G-46126YGGR3";
 ReactGA.initialize(TRACKING_ID);
 
 
 function App() {
+
+
   const problem = [
     "The museum grade antiques barrier to entry prevents thousands of investors from accessing the more exclusive assets that will benefit them in the long run.",
     "The time and money needed to hunt meteorites makes is almost impossible for small-scale companies and firms to enter the market and compete with established museums. ",
@@ -30,15 +34,25 @@ function App() {
   ];
   return (
     <>
-      <Header />
-      <HeroSection />
-      <HeroNext />
-      <ProblemAndSolution title="PROBLEMS" data={[...problem]} />
-      <ProblemAndSolution title="SOLUTIONS" data={[...solution]} />
-      <RoadMap />
-      <Tokenomics />
-      <Team />
-      <Contact/>
+      <SnackbarProvider
+        preventDuplicate
+        maxSnack={3}
+        autoHideDuration={3000}
+      >
+        <MetaMaskProvider>
+
+          <Header />
+          <HeroSection />
+          <HeroNext />
+          <ProblemAndSolution title="PROBLEMS" data={[...problem]} />
+          <ProblemAndSolution title="SOLUTIONS" data={[...solution]} />
+          <RoadMap />
+          <Tokenomics />
+          <Team />
+          <Contact />
+
+        </MetaMaskProvider>
+      </SnackbarProvider>
     </>
   );
 }
