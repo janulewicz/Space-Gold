@@ -11,10 +11,13 @@ import React from 'react';
 import ReactGA from 'react-ga';
 const TRACKING_ID = "G-46126YGGR3"; 
 ReactGA.initialize(TRACKING_ID);
-ReactGA.pageview(window.location.pathname + window.location.search);
-
 
 function App() {
+  
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, 
+  
   const problem = [
     "The museum grade antiques barrier to entry prevents thousands of investors from accessing the more exclusive assets that will benefit them in the long run.",
     "The time and money needed to hunt meteorites makes is almost impossible for small-scale companies and firms to enter the market and compete with established museums. ",
