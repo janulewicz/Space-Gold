@@ -17,7 +17,7 @@ function App() {
   
   useEffect(() => {
     ReactGA.pageview(window.location.pathname + window.location.search);
-  }, 
+  }, []);
   
   const problem = [
     "The museum grade antiques barrier to entry prevents thousands of investors from accessing the more exclusive assets that will benefit them in the long run.",
