@@ -1,11 +1,10 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Col } from "react-bootstrap";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
 import { Link } from "react-scroll";
 import Wallet from '../Wallet/Wallet';
-
 
 const Wrapper = styled.div`
   display: flex;
@@ -95,13 +94,12 @@ const Header = () => {
               </Link>
             }
           })}
-            <Wallet />
-
+          <Wallet />
         </div>
         <div
           className="hamburger d-flex d-lg-none"
           onClick={() => setSidebar((prev) => !prev)}
-        > 
+        >
           {sidebar ? (
             <IoMdClose color="#fff" size="30" />
           ) : (
@@ -114,7 +112,7 @@ const Header = () => {
             className={
               "sidebar d-flex  d-lg-none align-items-center  flex-column justify-content-center "
             }
-          ><Wallet />
+          >
             {menus.map((el, i) => {
               if (el.pdf) {
                 return <a key={i} href={el.to} className="menuItem px-3 py-3" target='_blank' rel='noopener noreferrer'>{el.name}</a>
@@ -133,9 +131,11 @@ const Header = () => {
                 </Link>
               }
             })}
+            <Wallet />
           </div>
         )}
       </Col>
+
     </Wrapper>
   );
 };

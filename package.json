@@ -29,9 +29,20 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
+    "ignorePatterns": ["src/*", "!src/test.js"],
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
     ]
   },
   "browserslist": {

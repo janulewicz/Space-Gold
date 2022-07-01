@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 import styled from "styled-components";
 const Wrapper = styled.div`
   background: url(./images/problembg.jpg);
@@ -118,7 +118,7 @@ const Team = () => {
                   <div className="position py-2">{el.position}</div>
                   <span className="name">{el.name}</span>
                 </div>
-                <button className="button">Read More</button>
+                <Button variant="info" disabled>Read More</Button>
               </div>
             </Col>
           ))}
