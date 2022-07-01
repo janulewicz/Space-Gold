@@ -36,6 +36,8 @@ exports.handler = async (event, context) => {
     data = await response.json();
     holdings = await getApiData(data, account);
     if (holdings > 0) {
+      console.log(data)
+      console.log(holdings)
       return { statusCode: 200, body: "true" };
     }
     else {
