@@ -5,11 +5,24 @@ import Button from 'react-bootstrap/Button'
 import { info, useMetaMaskBrowser, generic } from './Messages'
 import { useMetaMask } from "metamask-react";
 import React from "react";
-import { Link } from "react-scroll";
 
 
 
 function Wallet(props) {
+
+
+  const { addChain } = useMetaMask();
+  const bscChainNetworkParams = {
+    chainId: "0x38",
+    chainName: "Binance Smart Chain",
+    rpcUrls: ["https://bsc-dataseed.binance.org/"],
+    nativeCurrency: {
+      name: "BNB",
+      symbol: "BNB",
+      decimals: 18,
+    },
+    blockExplorerUrls: ["https://bscscan.com"]
+  };
 
   //Types of toast, also see Messages.j
   const action = key => (
@@ -123,6 +136,13 @@ function Wallet(props) {
             INVESTED IN SPACEGOLD COIN!!
           </Button>{' '}
         </Fragment>
+      )
+    }
+
+    if (chainId !== "0x38") {
+      console.log(chainId)
+      return (
+        <Button onClick={() => addChain(bscChainNetworkParams)}>SWITCH METAMASK TO BSC CHAIN AND RELOAD</Button>
       )
     }
     else {
