@@ -37,7 +37,7 @@ function Wallet(props) {
     <Fragment>
       <Button variant="warning" onClick={() => {
         // open the deeplink page 
-        window.open("https://metamask.app.link/dapp/deploy-preview-6--lucent-bienenstitch-e3bf48.netlify.app")
+        window.open("https://metamask.app.link/dapp/deploy-preview-11--lucent-bienenstitch-e3bf48.netlify.app")
       }}>
         <FaEthereum /> Open In Metamask Browser
       </Button>{' '}

@@ -1,6 +1,6 @@
 
 export let info = {
-    message: "Connected to",
+    message: "Connected",
     formatting: {
         variant: 'success',
         anchorOrigin: {
