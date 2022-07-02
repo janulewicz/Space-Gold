@@ -57,6 +57,8 @@ exports.handler = async (event, context) => {
         body: "true" };
     }
     else {
+      console.log(data)
+      console.log(holdings)
       return { statusCode: 200, 
         headers: CORS_HEADERS,
         body: "false" };
