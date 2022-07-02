@@ -22,7 +22,21 @@ const getApiData = async (resp, account) => {
   return HOLDINGS;
 };
 
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers':
+    'Origin, X-Requested-With, Content-Type, Accept',
+}
+
 exports.handler = async (event, context) => {
+
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers: CORS_HEADERS,
+    }
+  }
+
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: "Method Not Allowed" };
   }
@@ -38,15 +52,20 @@ exports.handler = async (event, context) => {
     if (holdings > 0) {
       console.log(data)
       console.log(holdings)
-      return { statusCode: 200, body: "true" };
+      return { statusCode: 200, 
+        headers: CORS_HEADERS,
+        body: "true" };
     }
     else {
-      return { statusCode: 200, body: "false" };
+      return { statusCode: 200, 
+        headers: CORS_HEADERS,
+        body: "false" };
     }
   } catch (error) {
     console.log(error);
     return {
       statusCode: 500,
+      headers: CORS_HEADERS,
       body: JSON.stringify({ error: 'Failed fetching data' }),
     };
   }
