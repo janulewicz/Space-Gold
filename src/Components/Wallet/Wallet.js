@@ -61,10 +61,9 @@ function Wallet(props) {
 
   function check_investor(props) {
     const url = 'https://www.spacegoldcoin.io/.netlify/functions/bscscan';
-
     // post body data 
     const payload = {
-      account: props.account,
+      account: props,
     };
 
     // request options
@@ -75,11 +74,13 @@ function Wallet(props) {
         'Content-Type': 'application/json',
       }
     }
-
     // send POST request
     fetch(url, options)
       .then(res => res.json())
-      .then(res => console.log(res));
+      .then(res => {
+        setInvestments(true)
+        return (res)
+      })
   }
 
   // https://reactjs.org/docs/hooks-effect.html
