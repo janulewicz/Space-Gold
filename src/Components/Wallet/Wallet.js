@@ -136,7 +136,7 @@ function Wallet(props) {
             activeClass="active"
             className="menuItem px-3"
             key="1" >
-            <Button variant="info" size="lg">INVEST IN SPACEGOLDCOIN</Button>{' '}</Link>
+            <Button variant="info" size="lg" href="https://docs.google.com/forms/d/13FXdcAD4SAFY2eNNNvK_FeTQg44ng2RPjUyCp7To-Q4">INVEST IN SPACEGOLDCOIN</Button>{' '}</Link>
         </Fragment>
       )
     }
