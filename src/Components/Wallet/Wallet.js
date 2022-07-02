@@ -5,7 +5,6 @@ import Button from 'react-bootstrap/Button'
 import { info, useMetaMaskBrowser, generic } from './Messages'
 import { useMetaMask } from "metamask-react";
 import React from "react";
-import { utils } from 'ethers';
 import { Link } from "react-scroll";
 
 
@@ -60,19 +59,28 @@ function Wallet(props) {
     )
   }
 
-  const getApiData = async () => {
-    setInvestments(0)
-    fetch("https://api.bscscan.com/api?module=account&action=txlist&address=0x749Ed5585af09f9bF60D5Fa29FdB9F7b8bC4e00F&startblock=9000000&endblock=99999999&page=1&offset=1000&sort=asc&apikey=MT31U2WRUXSCGFVYW7UFYD7EZQVXK1TRAX")
-      .then((response) => response.json())
-      .then((json) => {
-        for (let [, value] of Object.entries(json.result)) {
-          if (value.from === account) {
-            let amount = parseFloat(utils.formatEther(value.value))
-            setInvestments(investments + amount)
-          }
-        }
-      })
-  };
+  function check_investor(props) {
+    const url = 'https://www.spacegoldcoin.io/.netlify/functions/bscscan';
+
+    // post body data 
+    const payload = {
+      account: props.account,
+    };
+
+    // request options
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }
+
+    // send POST request
+    fetch(url, options)
+      .then(res => res.json())
+      .then(res => console.log(res));
+  }
 
   // https://reactjs.org/docs/hooks-effect.html
   useEffect(() => {
@@ -87,8 +95,8 @@ function Wallet(props) {
 
     if (status === "connected") {
       if (chainId === "0x38") {
-        getApiData()
         message(info, connected)
+        check_investor(account)
       }
     }
 
@@ -107,11 +115,11 @@ function Wallet(props) {
   }
   if (status === "connected") {
     console.log(investments, status)
-    if (investments > 0) {
+    if (investments) {
       return (
         <Fragment>
           <Button variant="info" size="lg" disabled>
-            INVESTED {investments} IN SPACEGOLD COIN!!
+            INVESTED IN SPACEGOLD COIN!!
           </Button>{' '}
         </Fragment>
       )
