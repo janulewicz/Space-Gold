@@ -47,7 +47,7 @@ function Wallet(props) {
   )
 
   const connected = key => (
-    <Fragment>to account {account.substring(0, 4)}... on BSC. &nbsp;
+    <Fragment>{account}... on BSC :) &nbsp;
       {' '}
       <Button variant="primary"
         onClick={() => { closeSnackbar(key) }}> {' '}
