@@ -61,7 +61,7 @@ function Wallet(props) {
 
   // States
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-  const [investments, setInvestments] = useState(0);
+  const [investments, setInvestments] = useState(false);
 
   const { status, connect, account, chainId } = useMetaMask();
   // Sending a message of various types.
