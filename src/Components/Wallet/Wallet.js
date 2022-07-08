@@ -6,6 +6,11 @@ import { info, useMetaMaskBrowser, generic } from './Messages'
 import { useMetaMask } from "metamask-react";
 import React from "react";
 
+var URL = "https://metamask.app.link/dapp/spacegoldcoin.io"
+if (process.env.CONTEXT != null) {
+URL = (process.env.CONTEXT === "production" ) ? process.env.URL : process.env.DEPLOY_PRIME_URL;
+}
+
 function Wallet(props) {
 
   const { addChain } = useMetaMask();
@@ -34,7 +39,7 @@ function Wallet(props) {
     <Fragment>
       <Button variant="warning" onClick={() => {
         // open the deeplink page 
-        window.open("https://metamask.app.link/dapp/deploy-preview-11--lucent-bienenstitch-e3bf48.netlify.app")
+        window.open(URL)
       }}>
         <FaEthereum /> Open In Metamask Browser
       </Button>{' '}
@@ -70,7 +75,7 @@ function Wallet(props) {
   }
 
   function check_investor(props) {
-    const url = 'https://www.spacegoldcoin.io/.netlify/functions/bscscan';
+    const url = '.netlify/functions/bscscan';
     // post body data 
     const payload = {
       account: props,
