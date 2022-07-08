@@ -42,10 +42,12 @@ exports.handler = async (event, context) => {
   }
   const payload = JSON.parse(event.body)
   const account = payload.account
+  console.log(account)
   try {
     let response = await fetch(`https://api.bscscan.com/api?module=account&action=txlist&address=${BNBWallet}&startblock=9000000&endblock=99999999&page=1&offset=1000&sort=asc&apikey=${BSCSCAN}`)
     let data = await response.json();
     let holdings = await getApiData(data, account);
+    console.log(data)
     if (holdings > 0) {
       console.log(holdings)
       return {
