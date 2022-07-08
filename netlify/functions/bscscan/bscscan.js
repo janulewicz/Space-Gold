@@ -10,8 +10,6 @@ const BNBWallet = "0x749Ed5585af09f9bF60D5Fa29FdB9F7b8bC4e00F"
 
 const BSCSCAN = process.env.BSCSCAN
 
-var HOLDINGS = 0
-
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers':
@@ -19,6 +17,8 @@ const CORS_HEADERS = {
 }
 
 exports.handler = async (event, context) => {
+  
+  var HOLDINGS = 0
 
   if (event.httpMethod === 'OPTIONS') {
     return {
