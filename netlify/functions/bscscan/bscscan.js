@@ -10,8 +10,6 @@ const BNBWallet = "0x749Ed5585af09f9bF60D5Fa29FdB9F7b8bC4e00F"
 
 const BSCSCAN = process.env.BSCSCAN
 
-var HOLDINGS = 0
-
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers':
@@ -19,6 +17,8 @@ const CORS_HEADERS = {
 }
 
 exports.handler = async (event, context) => {
+  
+  var HOLDINGS = 0
 
   if (event.httpMethod === 'OPTIONS') {
     return {
@@ -42,10 +42,12 @@ exports.handler = async (event, context) => {
   }
   const payload = JSON.parse(event.body)
   const account = payload.account
+  console.log(account)
   try {
     let response = await fetch(`https://api.bscscan.com/api?module=account&action=txlist&address=${BNBWallet}&startblock=9000000&endblock=99999999&page=1&offset=1000&sort=asc&apikey=${BSCSCAN}`)
     let data = await response.json();
     let holdings = await getApiData(data, account);
+    console.log(data)
     if (holdings > 0) {
       console.log(holdings)
       return {

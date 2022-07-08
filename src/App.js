@@ -10,14 +10,14 @@ import Tokenomics from "./Components/Tokenomics/Tokenomics";
 import Team from "./Components/Team/Team";
 import Header from "./Components/Header/Header";
 import React from 'react';
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
 import { useEffect } from 'react';
 const TRACKING_ID = "G-46126YGGR3"; 
 ReactGA.initialize(TRACKING_ID);
 
 function App() {
   useEffect(() => {
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname + window.location.search });
   }, []);
   
   const problem = [
