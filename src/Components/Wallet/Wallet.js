@@ -6,10 +6,7 @@ import { info, useMetaMaskBrowser, generic } from './Messages'
 import { useMetaMask } from "metamask-react";
 import React from "react";
 
-
-
 function Wallet(props) {
-
 
   const { addChain } = useMetaMask();
   const bscChainNetworkParams = {
@@ -91,7 +88,7 @@ function Wallet(props) {
     fetch(url, options)
       .then(res => res.json())
       .then(res => {
-        setInvestments(true)
+        setInvestments(res)
         return (res)
       })
   }
