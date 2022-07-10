@@ -5,11 +5,12 @@ import Button from 'react-bootstrap/Button'
 import { info, useMetaMaskBrowser, generic } from './Messages'
 import { useMetaMask } from "metamask-react";
 import React from "react";
-const DEEP_LINK  = "https://metamask.app.link/dapp/";
+const DEEP_LINK = "https://metamask.app.link/dapp/";
 // import { ethers } from "ethers";
+var URL = process.env.REACT_APP_URL
 
-if (context != null) {
-  URL = (cprocess.env.REACT_APP_CONTEXT === "production") ? process.env.REACT_APP_URL : process.env.REACT_APP_DEPLOY_PRIME_URL
+if (process.env.REACT_APP_CONTEXT != null) {
+  URL = (process.env.REACT_APP_CONTEXT === "production") ? process.env.REACT_APP_URL : process.env.REACT_APP_DEPLOY_PRIME_URL
 }
 
 function Wallet(props) {
@@ -39,7 +40,7 @@ function Wallet(props) {
   const mobile = key => (
     <Fragment>
       <Button variant="warning" onClick={() => {
-        // open the deeplink page 
+        // Open the deeplink page 
         window.open(`${DEEP_LINK}${URL}`)
       }}>
         <FaEthereum /> Please Open In Metamask Browser
@@ -55,7 +56,7 @@ function Wallet(props) {
   const install = key => (
     <Fragment>
       <Button variant="warning" onClick={() => {
-        // open metamask install page
+        // Open metamask install page
         window.open(`${DEEP_LINK}`)
       }}>
         <FaEthereum /> Please Install Metamask!
@@ -164,7 +165,7 @@ function Wallet(props) {
       return (
         <Fragment>
           <Button variant="info" size="lg" disabled>
-            YOU'RE INVESTED IN SPACEGOLD COIN!!
+            INVESTED IN SPACEGOLD
           </Button>{' '}
         </Fragment>
       )
