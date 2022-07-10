@@ -12,6 +12,8 @@ if (process.env.CONTEXT != null) {
   URL = (process.env.CONTEXT === "production") ? process.env.URL : process.env.DEPLOY_PRIME_URL;
 }
 
+console.log(URL, process.env.CONTEXT, process.env.DEPLOY_PRIME_URL)
+
 function Wallet(props) {
 
   const { addChain } = useMetaMask();
