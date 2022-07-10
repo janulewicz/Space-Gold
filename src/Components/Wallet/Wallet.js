@@ -9,7 +9,7 @@ import React from "react";
 
 var URL = "spacegoldcoin.io"
 
-var DEEP_LINK = "https://metamask.app.link/dapp"
+// var DEEP_LINK = "https://metamask.app.link/dapp"
 
 const context = process.env.CONTEXT 
 const deploy_url = process.env.DEPLOY_PRIME_URL
