@@ -7,12 +7,18 @@ import { useMetaMask } from "metamask-react";
 import React from "react";
 // import { ethers } from "ethers";
 
-var URL = "https://metamask.app.link/dapp/spacegoldcoin.io"
-if (process.env.CONTEXT != null) {
-  URL = (process.env.CONTEXT === "production") ? process.env.URL : process.env.DEPLOY_PRIME_URL;
+var URL = "spacegoldcoin.io"
+
+var DEEP_LINK = "https://metamask.app.link/dapp"
+
+const context = process.env.CONTEXT 
+const deploy_url = process.env.DEPLOY_PRIME_URL
+
+if (context != null) {
+  URL = (context === "production") ? URL : deploy_url;
 }
 
-console.log(URL, process.env.CONTEXT, process.env.DEPLOY_PRIME_URL)
+console.log(URL, context, deploy_url)
 
 function Wallet(props) {
 
