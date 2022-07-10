@@ -11,7 +11,7 @@ var URL = "spacegoldcoin.io"
 
 // var DEEP_LINK = "https://metamask.app.link/dapp"
 
-const context = process.env.CONTEXT 
+const context = process.env.REACT_APP_CONTEXT 
 const deploy_url = process.env.DEPLOY_PRIME_URL
 
 if (context != null) {
