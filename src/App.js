@@ -1,4 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import { SnackbarProvider } from 'notistack';
+import { MetaMaskProvider } from "metamask-react";
 import HeroSection from "./Components/HeroSection/HeroSection";
 import HeroNext from "./Components/HeroNext/HeroNext";
 import ProblemAndSolution from "./Components/ProblemAndSolution/ProblemAndSolution";
@@ -14,7 +16,6 @@ const TRACKING_ID = "G-46126YGGR3";
 ReactGA.initialize(TRACKING_ID);
 
 function App() {
-  
   useEffect(() => {
     ReactGA.send({ hitType: "pageview", page: window.location.pathname + window.location.search });
   }, []);
@@ -35,15 +36,25 @@ function App() {
   ];
   return (
     <>
-      <Header />
-      <HeroSection />
-      <HeroNext />
-      <ProblemAndSolution title="PROBLEMS" data={[...problem]} />
-      <ProblemAndSolution title="SOLUTIONS" data={[...solution]} />
-      <RoadMap />
-      <Tokenomics />
-      <Team />
-      <Contact/>
+      <SnackbarProvider
+        preventDuplicate
+        maxSnack={3}
+        autoHideDuration={3000}
+      >
+        <MetaMaskProvider>
+
+          <Header />
+          <HeroSection />
+          <HeroNext />
+          <ProblemAndSolution title="PROBLEMS" data={[...problem]} />
+          <ProblemAndSolution title="SOLUTIONS" data={[...solution]} />
+          <RoadMap />
+          <Tokenomics />
+          <Team />
+          <Contact />
+
+        </MetaMaskProvider>
+      </SnackbarProvider>
     </>
   );
 }

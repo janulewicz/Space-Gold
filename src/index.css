@@ -35,3 +35,8 @@ h6 {
   width: 100%;
   z-index: -1;
 }
+
+
+.SnackbarContainer-root {
+  padding-top: 23px;
+}

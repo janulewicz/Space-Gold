@@ -77,6 +77,9 @@ const Contact = () => {
           
         </p>
         <p className="text">
+          SpaceGold is in private sale...
+        </p>
+        <p className="text">
           Join our communities to find out the latest Space Gold news...
         </p>
         <Row>
