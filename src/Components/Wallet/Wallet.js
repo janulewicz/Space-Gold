@@ -6,6 +6,7 @@ import { info, useMetaMaskBrowser, generic } from './Messages'
 import { useMetaMask } from "metamask-react";
 import React from "react";
 const DEEP_LINK = "https://metamask.app.link/dapp/";
+const GOOGLE_FORM = "https://docs.google.com/forms/d/13FXdcAD4SAFY2eNNNvK_FeTQg44ng2RPjUyCp7To-Q4"
 // import { ethers } from "ethers";
 var URL = process.env.REACT_APP_URL
 
@@ -167,6 +168,9 @@ function Wallet(props) {
           <Button variant="info" size="lg" disabled>
             INVESTED IN SPACEGOLD
           </Button>{' '}
+          <Button variant="info" size="lg"  onClick={window.open(GOOGLE_FORM)}>
+            BUY MORE
+          </Button>{' '}
         </Fragment>
       )
     }
@@ -180,7 +184,9 @@ function Wallet(props) {
     else {
       return (
         <Fragment>
-          <Button variant="info" size="lg" href="https://docs.google.com/forms/d/13FXdcAD4SAFY2eNNNvK_FeTQg44ng2RPjUyCp7To-Q4">INVEST IN SPACEGOLDCOIN</Button>{' '}
+          <Button variant="info" size="lg" onClick={window.open(GOOGLE_FORM)}>
+            INVEST IN SPACEGOLDCOIN
+          </Button>{' '}
         </Fragment>
       )
     }
