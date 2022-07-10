@@ -11,7 +11,7 @@ export let info = {
 }
 
 export let generic = {
-    message: "Please connect to MetaMask..",
+    message: "Please connect to MetaMask...",
     formatting: {
         variant: 'warning',
         anchorOrigin: {

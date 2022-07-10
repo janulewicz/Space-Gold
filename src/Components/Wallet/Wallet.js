@@ -166,11 +166,13 @@ function Wallet(props) {
       return (
         <Fragment>
           <Button variant="info" size="lg" disabled>
-            INVESTED IN SPACEGOLD
+            INVESTED
           </Button>{' '}
-          <Button variant="info" size="lg"  onClick={window.open(GOOGLE_FORM)}>
+          <Fragment>
+          <Button variant="info" size="lg" onClick={() => window.open(GOOGLE_FORM)}>
             BUY MORE
           </Button>{' '}
+        </Fragment>
         </Fragment>
       )
     }
@@ -184,7 +186,7 @@ function Wallet(props) {
     else {
       return (
         <Fragment>
-          <Button variant="info" size="lg" onClick={window.open(GOOGLE_FORM)}>
+          <Button variant="info" size="lg" onClick={() => window.open(GOOGLE_FORM)}>
             INVEST IN SPACEGOLDCOIN
           </Button>{' '}
         </Fragment>
@@ -192,7 +194,13 @@ function Wallet(props) {
     }
   }
   else {
-    return <Fragment />
+    return (
+      <Fragment>
+      <Button variant="info" size="lg" onClick={() => window.open(GOOGLE_FORM)}>
+        INVEST IN SPACEGOLDCOIN
+      </Button>{' '}
+    </Fragment>
+    )
   }
 
 }
