@@ -9,7 +9,7 @@ import React from "react";
 
 var URL = "spacegoldcoin.io"
 
-// var DEEP_LINK = "https://metamask.app.link/dapp"
+var DEEP_LINK = "https://metamask.app.link/dapp/"
 
 const context = process.env.REACT_APP_CONTEXT 
 const deploy_url = process.env.REACT_APP_DEPLOY_PRIME_URL
@@ -17,8 +17,6 @@ const deploy_url = process.env.REACT_APP_DEPLOY_PRIME_URL
 if (context != null) {
   URL = (context === "production") ? URL : deploy_url;
 }
-
-console.log(URL, context, deploy_url)
 
 function Wallet(props) {
 
@@ -48,7 +46,7 @@ function Wallet(props) {
     <Fragment>
       <Button variant="warning" onClick={() => {
         // open the deeplink page 
-        window.open(URL)
+        window.open(`${DEEP_LINK}${URL}`)
       }}>
         <FaEthereum /> Please Open In Metamask Browser
       </Button>{' '}
@@ -63,8 +61,8 @@ function Wallet(props) {
   const install = key => (
     <Fragment>
       <Button variant="warning" onClick={() => {
-        // open the deeplink page 
-        window.open(URL)
+        // open metamask install page
+        window.open(`${DEEP_LINK}`)
       }}>
         <FaEthereum /> Please Install Metamask!
       </Button>{' '}
