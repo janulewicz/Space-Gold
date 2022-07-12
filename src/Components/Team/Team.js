@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Row, Col, Button } from "react-bootstrap";
 import styled from "styled-components";
+
 const Wrapper = styled.div`
   background: url(./images/problembg.jpg);
   background-repeat: no-repeat;
@@ -43,6 +44,15 @@ const Wrapper = styled.div`
     font-size: 16px;
     line-height: 150%;
     color: #ffffff;
+  }
+  .bio {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 250%;
+    color: #ffffff;
+    padding: 10px 12px;
   }
   .button {
     border: 0;
@@ -92,18 +102,23 @@ const Wrapper = styled.div`
   }
 `;
 const Team = () => {
+
+  const [moreInfo, setmoreInfo] = useState("More");
+
   const teamArray = [
-    { position: "CEO", name: "Jan Janulewicz", image: "./images/ceo.png" },
-    { position: "CMO", name: "Darren Humpleby", image: "./images/cmo.png" },
+    { position: "CEO", name: "Jan Janulewicz", image: "./images/ceo.png", bio: "Lorum epsum cool cool cool" },
+    { position: "CMO", name: "Darren Humpleby", image: "./images/cmo.png", bio: "Lorum epsum cool cool cool" },
     {
       position: `Director of Field   Operations`,
       name: "Oliver Ades",
       image: "./images/director.png",
+      bio: "Lorum epsum cool cool cool \n Lorum epsum cool cool cool \n Lorum epsum cool cool cool \n Lorum epsum cool cool cool \n "
     },
     {
       position: "Chief Solutions Architect ",
       name: "Jack Fenton",
       image: "./images/csa.png",
+      bio: "Lorum epsum cool cool cool"
     },
   ];
   return (
@@ -118,12 +133,26 @@ const Team = () => {
                   <div className="position py-2">{el.position}</div>
                   <span className="name">{el.name}</span>
                 </div>
-                <Button variant="info" disabled>Read More</Button>
+                <Button variant="info" onClick={() => setmoreInfo(moreInfo === "More" ? "Less" : "More")}>Read {moreInfo} </Button>
               </div>
             </Col>
           ))}
         </Row>
       </Col>
+      { moreInfo === "Less" &&
+        <Col xs={11} xxl={10} className="mx-auto">
+          <Row>
+            {teamArray.map((el, i) => (
+              <Col xs={6} md={3} key={i} className="py-4 py-md-0">
+                <div className="team-box d-flex flex-column justify-content-between align-items-center">
+                    <span className="bio">{el.bio}</span>
+                </div>
+              </Col>
+            ))}
+          </Row>
+        </Col>
+
+      }
       <div className="overlay"></div>
     </Wrapper>
   );
