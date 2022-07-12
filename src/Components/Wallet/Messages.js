@@ -22,9 +22,10 @@ export let generic = {
 }
 
 export let privateSale = {
-    message: "Space Gold Coin is in private sale.. Pleae connect to our communities..",
+    message: "Space Gold Coin is in private sale... \n \n Please connect to our communities... \n \n Read our FAQ below...",
     formatting: {
-        variant: 'warning',
+        variant: 'info',
+        style: { whiteSpace: 'pre-line' },
         anchorOrigin: {
             vertical: 'top',
             horizontal: 'right',
