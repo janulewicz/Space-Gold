@@ -140,9 +140,10 @@ const Wallet = ({ help, viewHelp }) => {
   function Help() {
     return (
       <Fragment>
-        <Button variant="info" size="lg" onClick={() => window.open(GOOGLE_FORM)}>
-          INVEST IN SPACEGOLD
-        </Button>{' '}
+        {status !== "notConnected" &&
+          <Button variant="info" size="lg" onClick={() => window.open(GOOGLE_FORM)}>
+            INVEST
+          </Button>}
         <Link onClick={() => { viewHelp(true) }}
           to="Help"
           smooth={true}
@@ -155,7 +156,7 @@ const Wallet = ({ help, viewHelp }) => {
       </Fragment>
     );
   }
-  
+
   useEffect(() => {
     if (help) {
       message(privateSale, action)
