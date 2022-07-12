@@ -58,7 +58,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Header = () => {
+const Header = ({ help, viewHelp }) => {
   const [sidebar, setSidebar] = useState(false);
   const menus = [
     { name: "Home", to: "HeroSection" },
@@ -94,7 +94,7 @@ const Header = () => {
               </Link>
             }
           })}
-          <Wallet />
+          <Wallet help={help} viewHelp={viewHelp} />
         </div>
         <div
           className="hamburger d-flex d-lg-none"
@@ -131,7 +131,7 @@ const Header = () => {
                 </Link>
               }
             })}
-            <Wallet />
+            <Wallet help={help} viewHelp={viewHelp} />
           </div>
         )}
       </Col>
