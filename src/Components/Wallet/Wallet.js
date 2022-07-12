@@ -50,6 +50,7 @@ const Wallet = ({ help, viewHelp }) => {
       <CloseSnack key={key} />
     </Fragment>
   )
+
   const mobile = key => (
     <Fragment>
       <Button variant="warning" onClick={() => {
@@ -76,6 +77,13 @@ const Wallet = ({ help, viewHelp }) => {
 
   const connected = key => (
     <Fragment>{account} &nbsp;
+      {' '}
+      <CloseSnack key={key} />
+    </Fragment >
+  )
+
+  const invested = key => (
+    <Fragment>You are a SpaceGold investor &#x1F4B8; &nbsp;
       {' '}
       <CloseSnack key={key} />
     </Fragment >
@@ -153,6 +161,13 @@ const Wallet = ({ help, viewHelp }) => {
       message(privateSale, action)
     }
   }, [help]);
+
+
+  useEffect(() => {
+    if (investments) {
+      message(info, invested)
+    }
+  }, [investments]);
 
   // https://reactjs.org/docs/hooks-effect.html
   useEffect(() => {
