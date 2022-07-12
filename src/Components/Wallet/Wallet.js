@@ -165,7 +165,7 @@ const Wallet = ({ help, viewHelp }) => {
 
 
   useEffect(() => {
-    if (investments) {
+    if (investments === "true" ) {
       message(info, invested)
     }
   }, [investments]);
