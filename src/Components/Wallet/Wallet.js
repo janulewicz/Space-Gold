@@ -83,7 +83,7 @@ const Wallet = ({ help, viewHelp }) => {
   )
 
   const invested = key => (
-    <Fragment>You are a SpaceGold investor &#x1F4B8; &nbsp;
+    <Fragment>You are a SpaceGold investor <span role="img" aria-label="donut">🍩&#x1F4B8;</span> &nbsp;
       {' '}
       <CloseSnack key={key} />
     </Fragment >
