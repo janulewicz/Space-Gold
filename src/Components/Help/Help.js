@@ -65,11 +65,10 @@ const Help = ({ help, viewHelp }) => {
       <Wrapper id="Help">
         <Col xs={11} xxl={10} className="mx-auto">
           <p className="title">HELP &nbsp;
-            <FaWindowClose onClick={() => { viewHelp(false) } }/></p>
+            <FaWindowClose onClick={() => { viewHelp(false) }} /></p>
           <Row>
           </Row>
-
-
+          Lorum Upsom sALTSÍ
         </Col>
         <div className="overlay"></div>
       </Wrapper>
