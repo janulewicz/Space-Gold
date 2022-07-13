@@ -3,7 +3,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { FaEthereum, FaWindowClose, FaQuestionCircle } from 'react-icons/fa';
 import { Link } from "react-scroll";
 import Button from 'react-bootstrap/Button'
-import { info, useMetaMaskBrowser, generic, privateSale } from './Messages'
+import { info, useMetaMaskBrowser, generic, privateSale, success } from './Messages'
 import { bscChainNetworkParams } from './Constants'
 
 import { useMetaMask } from "metamask-react";
@@ -73,7 +73,7 @@ const Wallet = ({ help, viewHelp }) => {
   )
 
   const invested = key => (
-    <Fragment>You are a SpaceGold investor <span role="img" aria-label="spacegold">&#x1F4B8;</span> &nbsp;
+    <Fragment><span role="img" aria-label="spacegold">&#x1F4B8; &nbsp; &nbsp;</span> 
       {' '}
       <CloseSnack key={key} />
     </Fragment >
@@ -155,8 +155,8 @@ const Wallet = ({ help, viewHelp }) => {
   }, [help]);
 
   useEffect(() => {
-    if (investments === "true") {
-      message(info, invested)
+    if (investments === true) {
+      message(success, invested)
     }
   }, [investments]);
 
@@ -196,14 +196,13 @@ const Wallet = ({ help, viewHelp }) => {
     return (
       <Fragment>
         <Button onClick={connect}>
-          CONNECT WALLET
+          CONNECT METAMASK
         </Button>
         <Help />
       </Fragment>
     )
   }
   if (status === "connected") {
-    console.log(investments, status)
     if (investments) {
       return (
         <Fragment>

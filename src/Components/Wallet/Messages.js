@@ -10,6 +10,17 @@ export let info = {
     },
 }
 
+export let success = {
+    message: "You are an investor...",
+    formatting: {
+        variant: 'info',
+        anchorOrigin: {
+            vertical: 'top',
+            horizontal: 'right',
+        },
+    },
+}
+
 export let generic = {
     message: "Please connect to MetaMask...",
     formatting: {

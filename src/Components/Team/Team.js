@@ -133,7 +133,7 @@ const Team = () => {
                   <div className="position py-2">{el.position}</div>
                   <span className="name">{el.name}</span>
                 </div>
-                {moreInfo === "Less" && <span className="bio">{el.bio}</span>}
+                {moreInfo === "Less" && <span className="bio"> <hr width="100%" />{el.bio}</span>}
                 <Button variant="info" onClick={() => setmoreInfo(moreInfo === "More" ? "Less" : "More")}>Read {moreInfo} </Button>
               </div>
             </Col>
