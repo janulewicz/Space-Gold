@@ -208,7 +208,7 @@ const Wallet = ({ help, viewHelp }) => {
       return (
         <Fragment>
           <Button variant="info" size="lg" disabled>
-          <FaEthereum />INVESTED
+            INVESTED
           </Button>{' '}
           <Fragment>
             <div style={style} onClick={() => window.open(GOOGLE_FORM)}>
