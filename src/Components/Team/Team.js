@@ -133,26 +133,13 @@ const Team = () => {
                   <div className="position py-2">{el.position}</div>
                   <span className="name">{el.name}</span>
                 </div>
+                {moreInfo === "Less" && <span className="bio">{el.bio}</span>}
                 <Button variant="info" onClick={() => setmoreInfo(moreInfo === "More" ? "Less" : "More")}>Read {moreInfo} </Button>
               </div>
             </Col>
           ))}
         </Row>
       </Col>
-      { moreInfo === "Less" &&
-        <Col xs={11} xxl={10} className="mx-auto">
-          <Row>
-            {teamArray.map((el, i) => (
-              <Col xs={6} md={3} key={i} className="py-4 py-md-0">
-                <div className="team-box d-flex flex-column justify-content-between align-items-center">
-                    <span className="bio">{el.bio}</span>
-                </div>
-              </Col>
-            ))}
-          </Row>
-        </Col>
-
-      }
       <div className="overlay"></div>
     </Wrapper>
   );

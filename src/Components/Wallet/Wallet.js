@@ -4,6 +4,8 @@ import { FaEthereum, FaWindowClose, FaQuestionCircle } from 'react-icons/fa';
 import { Link } from "react-scroll";
 import Button from 'react-bootstrap/Button'
 import { info, useMetaMaskBrowser, generic, privateSale } from './Messages'
+import { bscChainNetworkParams } from './Constants'
+
 import { useMetaMask } from "metamask-react";
 import React from "react";
 
@@ -27,23 +29,11 @@ const style = {
   color: "#2fd4e7",
   textDecoration: "none",
   cursor: "pointer",
-  paddingLeft: "10px",
+  padding: "10px",
 };
 
 const Wallet = ({ help, viewHelp }) => {
   const { addChain } = useMetaMask();
-  const bscChainNetworkParams = {
-    chainId: "0x38",
-    chainName: "Binance Smart Chain",
-    rpcUrls: ["https://bsc-dataseed.binance.org/"],
-    nativeCurrency: {
-      name: "BNB",
-      symbol: "BNB",
-      decimals: 18,
-    },
-    blockExplorerUrls: ["https://bscscan.com"]
-  };
-
   //Types of toast, also see Messages.j
   const action = key => (
     <Fragment>
@@ -141,9 +131,10 @@ const Wallet = ({ help, viewHelp }) => {
     return (
       <Fragment>
         {status !== "notConnected" &&
-          <Button variant="info" size="lg" onClick={() => window.open(GOOGLE_FORM)}>
-            INVEST
-          </Button>}
+          <div style={style} onClick={() => window.open(GOOGLE_FORM)}>INVEST</div>}
+        {status === "unavailable" &&
+          <div style={style} onClick={() => { window.open(`${DEEP_LINK}${URL}`) }}>
+            <FaEthereum />METAMASK</div>}
         <Link onClick={() => { viewHelp(true) }}
           to="Help"
           smooth={true}
@@ -164,7 +155,7 @@ const Wallet = ({ help, viewHelp }) => {
   }, [help]);
 
   useEffect(() => {
-    if (investments === true ) {
+    if (investments === "true") {
       message(info, invested)
     }
   }, [investments]);
@@ -181,7 +172,7 @@ const Wallet = ({ help, viewHelp }) => {
     }
 
     if (status === "connected") {
-      if (chainId === "0x38") {
+      if (chainId === bscChainNetworkParams.chainId) {
         message(info, connected)
         check_investor(account)
         // const provider = new ethers.providers.Web3Provider(window.ethereum)
