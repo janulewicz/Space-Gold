@@ -134,7 +134,7 @@ const Wallet = ({ help, viewHelp }) => {
           <div style={style} onClick={() => window.open(GOOGLE_FORM)}>INVEST</div>}
         {status === "unavailable" &&
           <div style={style} onClick={() => { window.open(`${DEEP_LINK}${URL}`) }}>
-            <FaEthereum />METAMASK</div>}
+            METAMASK</div>}
         <Link onClick={() => { viewHelp(true) }}
           to="Help"
           smooth={true}
@@ -142,6 +142,7 @@ const Wallet = ({ help, viewHelp }) => {
           duration={250}>
           <div style={style}>
             <FaQuestionCircle />
+            {window.innerWidth < 1500 && " HELP" }
           </div>
         </Link>
       </Fragment>
