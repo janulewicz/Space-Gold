@@ -142,7 +142,7 @@ const Wallet = ({ help, viewHelp }) => {
           duration={250}>
           <div style={style}>
             <FaQuestionCircle />
-            {window.innerWidth < 1500 && " HELP" }
+            {window.innerWidth < 1000 && " HELP" }
           </div>
         </Link>
       </Fragment>
