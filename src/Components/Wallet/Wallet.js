@@ -211,7 +211,7 @@ const Wallet = ({ help, viewHelp }) => {
           <FaEthereum />INVESTED
           </Button>{' '}
           <Fragment>
-            <div style="style" onClick={() => window.open(GOOGLE_FORM)}>
+            <div style={style} onClick={() => window.open(GOOGLE_FORM)}>
               BUY MORE
             </div>
           </Fragment>
