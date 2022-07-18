@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { Row, Col, Button } from "react-bootstrap";
+import { FaLinkedin } from 'react-icons/fa';
 import styled from "styled-components";
+import ReactMarkdown from 'react-markdown'
+import icon from './android-chrome-192x192.png';
 
 const Wrapper = styled.div`
   background: url(./images/problembg.jpg);
@@ -18,13 +21,16 @@ const Wrapper = styled.div`
   .team-image {
     width: 150px;
   }
+  .link {
+    font-size: 50px;
+    line-height: 12px;
+  }
   .title {
     font-family: Poppins;
     font-style: normal;
     font-weight: 500;
     font-size: 48px;
     line-height: 72px;
-
     color: #2fd4e7;
   }
   .position {
@@ -48,11 +54,11 @@ const Wrapper = styled.div`
   .bio {
     font-family: Poppins;
     font-style: normal;
-    font-weight: 300;
-    font-size: 14px;
-    line-height: 250%;
+    font-weight: 250;
+    font-size: 13px;
+    line-height: 110%;
     color: #ffffff;
-    padding: 10px 12px;
+    padding: 6px 8px;
   }
   .button {
     border: 0;
@@ -106,19 +112,64 @@ const Team = () => {
   const [moreInfo, setmoreInfo] = useState("More");
 
   const teamArray = [
-    { position: "CEO", name: "Jan Janulewicz", image: "./images/ceo.png", bio: "Lorum epsum cool cool cool" },
-    { position: "CMO", name: "Darren Humpleby", image: "./images/cmo.png", bio: "Lorum epsum cool cool cool" },
     {
-      position: `Director of Field   Operations`,
+      position: "CEO",
+      name: "Jan Janulewicz",
+      image: "./images/ceo.png",
+      bio: `- Director of Insite Archaeological Services
+      employing 20 archaeologists in the UK, turnover
+      £1 million
+- 15 years experience in archaeological field
+    techniques
+- 8 years experience drone development
+- Studied political economics
+- Postgraduate studies in Law of Cryptocurrency at
+Franklin Pierce school of Law
+- 4 years experience crypto investing, trading and
+private equity due diligence
+- ICO bounty hunter and cryptocurrency writer and
+researcher`,
+      link:
+        <Button onClick={() => {
+          // Open Jan's LinkedIn
+          window.open("https://www.linkedin.com/in/jan-janulewicz-107b9184")
+        }}>
+          <FaLinkedin />
+        </Button>
+    },
+
+    { position: "CMO", 
+    name: "Darren Humpleby", 
+    image: "./images/cmo.png", 
+    bio: `- 3 years leading marketing teams within the crypto space 
+- Experience running bounty campaigns,
+blogging, seo content writing, press release copy, 
+community building, social media, geurila marketing, 
+ppc, wide network of contacts, 
+including exchange listing and press contacts`,
+link: <img src={icon} alt="SpaceGold" width="60" height="60" /> },
+    {
+      position: `Director of Field Operations`,
       name: "Oliver Ades",
       image: "./images/director.png",
-      bio: "Lorum epsum cool cool cool \n Lorum epsum cool cool cool \n Lorum epsum cool cool cool \n Lorum epsum cool cool cool \n "
+      bio: `- Worked for British Antarctic Research Survey. 
+- Completed 6 month expedition to Antartica before working as a purity and isolation 
+technician for Syngenta Crop Sciences, 
+and as a freelance crop inspector for UK cereals. 
+- Extensive experience in documentary film and media,
+including video production and photogtaphy.`,
+link: <img src={icon} alt="SpaceGold" width="50" height="50" />
     },
     {
       position: "Chief Solutions Architect ",
       name: "Jack Fenton",
       image: "./images/csa.png",
-      bio: "Lorum epsum cool cool cool"
+      bio: `- 10+ years experience with specialisms in web security, cloud computing, 
+site reliability and containerisation. 
+- Along with daytime toil at a selection of enterprise-level London tech firms
+Jack likes to spend his spare time looking away from his screens 
+and daydreaming about loopholes in the space time continuum.`,
+link: <img src={icon} alt="SpaceGold" width="50" height="50" />
     },
   ];
   return (
@@ -133,7 +184,12 @@ const Team = () => {
                   <div className="position py-2">{el.position}</div>
                   <span className="name">{el.name}</span>
                 </div>
-                {moreInfo === "Less" && <span className="bio"> <hr width="100%" />{el.bio}</span>}
+                {moreInfo === "Less" && <Fragment><span className="bio"> <hr width="100%" />
+                  <ReactMarkdown>{el.bio}</ReactMarkdown>
+                </span>
+                  <span className="link">{el.link}</span></Fragment>
+                }
+                ` \n`
                 <Button variant="info" onClick={() => setmoreInfo(moreInfo === "More" ? "Less" : "More")}>Read {moreInfo} </Button>
               </div>
             </Col>
