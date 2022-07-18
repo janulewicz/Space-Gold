@@ -3,7 +3,7 @@ import { Row, Col, Button } from "react-bootstrap";
 import { FaLinkedin } from 'react-icons/fa';
 import styled from "styled-components";
 import ReactMarkdown from 'react-markdown'
-import icon from './android-chrome-192x192.png';
+import icon from './icon.png';
 
 const Wrapper = styled.div`
   background: url(./images/problembg.jpg);
@@ -24,6 +24,9 @@ const Wrapper = styled.div`
   .link {
     font-size: 50px;
     line-height: 12px;
+  }
+  .greyedout {
+    opacity: 0.3;
   }
   .title {
     font-family: Poppins;
@@ -111,6 +114,12 @@ const Team = () => {
 
   const [moreInfo, setmoreInfo] = useState("More");
 
+  function greyMeteor() {
+    return (
+      <div className="greyedout"><img src={icon} alt="SpaceGold" width="50" height="50" /></div>
+    )
+  }
+
   const teamArray = [
     {
       position: "CEO",
@@ -138,16 +147,18 @@ researcher`,
         </Button>
     },
 
-    { position: "CMO", 
-    name: "Darren Humpleby", 
-    image: "./images/cmo.png", 
-    bio: `- 3 years leading marketing teams within the crypto space 
+    {
+      position: "CMO",
+      name: "Darren Humpleby",
+      image: "./images/cmo.png",
+      bio: `- 3 years leading marketing teams within the crypto space 
 - Experience running bounty campaigns,
 blogging, seo content writing, press release copy, 
 community building, social media, geurila marketing, 
 ppc, wide network of contacts, 
 including exchange listing and press contacts`,
-link: <img src={icon} alt="SpaceGold" width="60" height="60" /> },
+      link: greyMeteor()
+    },
     {
       position: `Director of Field Operations`,
       name: "Oliver Ades",
@@ -157,8 +168,8 @@ link: <img src={icon} alt="SpaceGold" width="60" height="60" /> },
 technician for Syngenta Crop Sciences, 
 and as a freelance crop inspector for UK cereals. 
 - Extensive experience in documentary film and media,
-including video production and photogtaphy.`,
-link: <img src={icon} alt="SpaceGold" width="50" height="50" />
+including video production and photography.`,
+      link: greyMeteor()
     },
     {
       position: "Chief Solutions Architect ",
@@ -169,7 +180,7 @@ site reliability and containerisation.
 - Along with daytime toil at a selection of enterprise-level London tech firms
 Jack likes to spend his spare time looking away from his screens 
 and daydreaming about loopholes in the space time continuum.`,
-link: <img src={icon} alt="SpaceGold" width="50" height="50" />
+      link: greyMeteor()
     },
   ];
   return (
