@@ -10,7 +10,6 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
   width: 100%;
   background: #17120f;
   z-index: 5;
@@ -49,11 +48,10 @@ const Wrapper = styled.div`
   .sidebar {
     padding: 25px 0;
     padding-top: 0;
-    position: absolute;
     top: 100px;
     left: 0;
     background: #17120f;
-    width: 100%;
+    width: 50%;
     transition: 1s;
   }
 `;
@@ -110,7 +108,7 @@ const Header = ({ help, viewHelp }) => {
         {sidebar && (
           <div
             className={
-              "sidebar d-flex  d-lg-none align-items-center  flex-column justify-content-center "
+              "sidebar d-flex  d-lg-none align-items-center flex-column"
             }
           >
             {menus.map((el, i) => {
