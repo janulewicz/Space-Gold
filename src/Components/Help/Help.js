@@ -109,7 +109,7 @@ const Help = ({ help, viewHelp }) => {
       <Wrapper id="Help">
         <Col xs={11} xxl={10} className="mx-auto">a
           <p className="title">HELP!!! &nbsp;
-            <FaWindowClose size="0.5em" onClick={() => { viewHelp(false) }} /></p>
+            <FaWindowClose size="0.7em" onClick={() => { viewHelp(false) }} /></p>
           <Row>
           </Row>
           <Faq />
