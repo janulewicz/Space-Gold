@@ -5,6 +5,7 @@ import { Link } from "react-scroll";
 import Button from 'react-bootstrap/Button'
 import { info, useMetaMaskBrowser, generic, privateSale, success } from './Messages'
 import { bscChainNetworkParams } from './Constants'
+import styled from "styled-components";
 
 import { useMetaMask } from "metamask-react";
 import React from "react";
@@ -18,31 +19,43 @@ if (process.env.REACT_APP_CONTEXT != null) {
   URL = (process.env.REACT_APP_CONTEXT === "production") ? process.env.REACT_APP_URL : process.env.REACT_APP_DEPLOY_PRIME_URL
 }
 
-const style = {
-  fontFamily: "Poppins",
-  fontStyle: "normal",
-  fontWeight: "normal",
-  fontSize: "18px",
-  lineHeight: "150%",
+const Message = styled.div`
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+`;
 
-  textTransform: "uppercase",
-  color: "#2fd4e7",
-  textDecoration: "none",
-  cursor: "pointer",
-  padding: "10px",
-};
+const Wrapper = styled.div`
+  font-size: 18px;
+  line-height: 150%;
+  text-transform: uppercase;
+  color: #2fd4e7;
+  text-decoration: none;
+  cursor: pointer;
+`;
+
+const Click = styled.div`
+  padding: 0px 10px;
+  align-items: center;
+  display: inline;
+  @media only screen and (max-width: 1000px) {
+    text-align: center;
+    display: block;
+    padding: 10px;
+  }
+`;
 
 const Wallet = ({ help, viewHelp }) => {
   const { addChain } = useMetaMask();
   //Types of toast, also see Messages.j
   const action = key => (
-    <Fragment>
+    <Message>
       <CloseSnack key={key} />
-    </Fragment>
+    </Message>
   )
 
   const mobile = key => (
-    <Fragment>
+    <Message>
       <Button variant="warning" onClick={() => {
         // Open the deeplink page 
         window.open(`${DEEP_LINK}${URL}`)
@@ -50,33 +63,33 @@ const Wallet = ({ help, viewHelp }) => {
         <FaEthereum /> Please Open In Metamask Browser
       </Button>{' '}
       <CloseSnack key={key} />
-    </Fragment >
+    </Message >
   )
 
   const install = key => (
-    <Fragment>
-      <Button variant="warning" onClick={() => {
+    <Message>
+      <Button className="message" variant="warning" onClick={() => {
         // Open metamask install page
         window.open(`${DEEP_LINK}`)
       }}>
         <FaEthereum /> Please Install Metamask!
       </Button>{' '}
       <CloseSnack key={key} />
-    </Fragment >
+    </Message >
   )
 
   const connected = key => (
-    <Fragment>{account} &nbsp;
+    <Message>{account} &nbsp;
       {' '}
       <CloseSnack key={key} />
-    </Fragment >
+    </Message >
   )
 
   const invested = key => (
-    <Fragment><span role="img" aria-label="spacegold">&#x1F4B8; &nbsp; &nbsp;</span> 
+    <Message><span role="img" aria-label="spacegold">&#x1F4B8; &nbsp; &nbsp;</span>
       {' '}
       <CloseSnack key={key} />
-    </Fragment >
+    </Message >
   )
 
   // States
@@ -129,23 +142,24 @@ const Wallet = ({ help, viewHelp }) => {
 
   function Help() {
     return (
-      <Fragment>
+      <Wrapper>
         {status !== "notConnected" &&
-          <div style={style} onClick={() => window.open(GOOGLE_FORM)}>INVEST</div>}
+          <Click onClick={() => window.open(GOOGLE_FORM)}>INVEST
+          </Click>}
         {status === "unavailable" &&
-          <div style={style} onClick={() => { window.open(`${DEEP_LINK}${URL}`) }}>
-            METAMASK</div>}
+          <Click onClick={() => { window.open(`${DEEP_LINK}${URL}`) }}>
+            METAMASK</Click>}
         <Link onClick={() => { viewHelp(true) }}
           to="Help"
           smooth={true}
           offset={-150}
           duration={250}>
-          <div style={style}>
+          <Click>
             <FaQuestionCircle />
-            {window.innerWidth < 1000 && " HELP" }
-          </div>
+            {window.innerWidth < 1000 && " HELP"}
+          </Click>
         </Link>
-      </Fragment>
+      </Wrapper>
     );
   }
 
@@ -195,27 +209,27 @@ const Wallet = ({ help, viewHelp }) => {
 
   if (status === "notConnected") {
     return (
-      <Fragment>
+      <Wrapper>
         <Button onClick={connect}>
           CONNECT METAMASK
         </Button>
         <Help />
-      </Fragment>
+      </Wrapper>
     )
   }
   if (status === "connected") {
     if (investments) {
       return (
-        <Fragment>
+        <Wrapper>
           <Button variant="info" size="lg" disabled>
             INVESTED
           </Button>{' '}
-          <Fragment>
-            <div style={style} onClick={() => window.open(GOOGLE_FORM)}>
+          <Wrapper>
+            <div onClick={() => window.open(GOOGLE_FORM)}>
               BUY MORE
             </div>
-          </Fragment>
-        </Fragment>
+          </Wrapper>
+        </Wrapper>
       )
     }
 

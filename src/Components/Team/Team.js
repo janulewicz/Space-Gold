@@ -2,7 +2,6 @@ import React, { useState, Fragment } from "react";
 import { Row, Col, Button } from "react-bootstrap";
 import { FaLinkedin } from 'react-icons/fa';
 import styled from "styled-components";
-import ReactMarkdown from 'react-markdown'
 import icon from './icon.png';
 
 const Wrapper = styled.div`
@@ -125,19 +124,19 @@ const Team = () => {
       position: "CEO",
       name: "Jan Janulewicz",
       image: "./images/ceo.png",
-      bio: `- Director of Insite Archaeological Services
+      bio: [`Director of Insite Archaeological Services
       employing 20 archaeologists in the UK, turnover
-      £1 million
-- 15 years experience in archaeological field
-    techniques
-- 8 years experience drone development
-- Studied political economics
-- Postgraduate studies in Law of Cryptocurrency at
-Franklin Pierce school of Law
-- 4 years experience crypto investing, trading and
-private equity due diligence
-- ICO bounty hunter and cryptocurrency writer and
-researcher`,
+      £1 million`,
+        `15 years experience in archaeological field
+      techniques`,
+        `8 years experience drone development`,
+        `Studied political economics`,
+        `Postgraduate studies in Law of Cryptocurrency at
+      Franklin Pierce school of Law`,
+        `4 years experience crypto investing, trading and
+      private equity due diligence`,
+        `ICO bounty hunter and cryptocurrency writer and
+      researcher`],
       link:
         <Button onClick={() => {
           // Open Jan's LinkedIn
@@ -151,38 +150,37 @@ researcher`,
       position: "CMO",
       name: "Darren Humpleby",
       image: "./images/cmo.png",
-      bio: `- 3 years leading marketing teams within the crypto space
-
-- Experience running bounty campaigns,
-blogging, seo content writing, press release copy, 
-community building, social media, guerilla marketing, 
-ppc, wide network of contacts, 
-including exchange listing and press contacts`,
+      bio: [`3 years leading marketing teams within the crypto space`,
+        `Experience running bounty campaigns,
+      blogging, seo content writing, press release copy, 
+      community building, social media, guerilla marketing, 
+      ppc, wide network of contacts, 
+      including exchange listing and press contacts`],
       link: greyMeteor()
     },
     {
       position: `Director of Field Operations`,
       name: "Oliver Ades",
       image: "./images/director.png",
-      bio: `- Worked for British Antarctic Research Survey.
-
-- Completed 6 month expedition to Antarctica before working as a purity and isolation
-technician for Syngenta Crop Sciences, 
-and as a freelance crop inspector for UK cereals.
-
-- Extensive experience in documentary film and media,
-including video production and photography.`,
+      bio: [`Worked for British Antarctic Research Survey.`,
+        `Completed 6 month expedition to Antarctica 
+      before working as a purity and isolation
+      technician for Syngenta Crop Sciences, 
+      and as a freelance crop inspector for UK cereals.`,
+        `Extensive experience in documentary film and media,
+      including video production and photography.`],
       link: greyMeteor()
     },
     {
       position: "Chief Solutions Architect ",
       name: "Jack Fenton",
       image: "./images/csa.png",
-      bio: `- 10+ years experience with specialisms in web security, cloud computing, 
-site reliability and containerisation.
-- Along with daytime toil at a selection of enterprise-level London tech firms
-Jack likes to spend spare time looking away from screens
-and daydreaming about loopholes in the space time continuum.`,
+      bio: [`10+ years experience with specialisms in web 
+      security, cloud computing, site reliability and containerisation.`,
+        `Along with daytime toil at a selection of 
+      enterprise-level London tech firms
+      Jack likes to spend spare time looking away from screens
+      and daydreaming about loopholes in the space time continuum.`],
       link: greyMeteor()
     },
   ];
@@ -199,7 +197,9 @@ and daydreaming about loopholes in the space time continuum.`,
                   <span className="name">{el.name}</span>
                 </div>
                 {moreInfo === "Less" && <Fragment><span className="bio"> <hr width="100%" />
-                  <ReactMarkdown>{el.bio}</ReactMarkdown>
+                  {Object.values(el.bio).map((bullet) => (
+                    <div className="bio" key={bullet}>• {bullet}</div>
+                  ))}
                 </span>
                   <span className="link">{el.link}</span></Fragment>
                 }

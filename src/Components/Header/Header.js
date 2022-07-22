@@ -9,7 +9,7 @@ import Wallet from '../Wallet/Wallet';
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center;;
   width: 100%;
   background: #17120f;
   z-index: 5;
@@ -44,7 +44,6 @@ const Wrapper = styled.div`
   .hamburger {
     cursor: pointer;
   }
-
   .sidebar {
     padding: 25px 0;
     padding-top: 0;
