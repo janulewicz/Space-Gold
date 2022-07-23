@@ -68,7 +68,6 @@ const Contact = ({ viewHelp }) => {
     { product: "Telegram", icon: <FaTelegramPlane />, link: "https://t.me/SpaceGold1" },
     { product: "Twitter", icon: <FaTwitter />, link: "https://twitter.com/spacegoldcoin?t=EhwAUeZZ9u3QqxNFLzSuuw&s=09" },
     { product: "Instagram", icon: <FaInstagram />, link: "https://instagram.com/spacegoldcoin?igshid=YmMyMTA2M2Y=" },
-    // { product: "Help", icon: , link: "https://instagram.com/spacegoldcoin?igshid=YmMyMTA2M2Y=" },
   ];
 
   return (
@@ -100,6 +99,7 @@ const Contact = ({ viewHelp }) => {
               <p className="text">
                 <Link onClick={() => { viewHelp(true) }}
                   to="Help"
+                  className="text"
                   smooth={true}
                   offset={-150}
                   duration={250}>

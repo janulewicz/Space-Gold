@@ -9,7 +9,6 @@ import Wallet from '../Wallet/Wallet';
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;;
   width: 100%;
   background: #17120f;
   z-index: 5;
