@@ -9,8 +9,7 @@ import Wallet from '../Wallet/Wallet';
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  position: fixed;
+  align-items: center;;
   width: 100%;
   background: #17120f;
   z-index: 5;
@@ -45,20 +44,18 @@ const Wrapper = styled.div`
   .hamburger {
     cursor: pointer;
   }
-
   .sidebar {
     padding: 25px 0;
     padding-top: 0;
-    position: absolute;
     top: 100px;
     left: 0;
     background: #17120f;
-    width: 100%;
+    width: 50%;
     transition: 1s;
   }
 `;
 
-const Header = () => {
+const Header = ({ help, viewHelp }) => {
   const [sidebar, setSidebar] = useState(false);
   const menus = [
     { name: "Home", to: "HeroSection" },
@@ -94,7 +91,7 @@ const Header = () => {
               </Link>
             }
           })}
-          <Wallet />
+          <Wallet help={help} viewHelp={viewHelp} />
         </div>
         <div
           className="hamburger d-flex d-lg-none"
@@ -110,7 +107,7 @@ const Header = () => {
         {sidebar && (
           <div
             className={
-              "sidebar d-flex  d-lg-none align-items-center  flex-column justify-content-center "
+              "sidebar d-flex  d-lg-none align-items-center flex-column"
             }
           >
             {menus.map((el, i) => {
@@ -131,7 +128,7 @@ const Header = () => {
                 </Link>
               }
             })}
-            <Wallet />
+            <Wallet help={help} viewHelp={viewHelp} />
           </div>
         )}
       </Col>

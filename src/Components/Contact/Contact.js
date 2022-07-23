@@ -1,7 +1,10 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
-import { FaTelegramPlane, FaTwitter, FaInstagram } from "react-icons/fa";
+import { FaTelegramPlane, FaTwitter, FaInstagram, FaQuestionCircle } from "react-icons/fa";
+import { Link } from "react-scroll";
+
+
 
 const Wrapper = styled.div`
   background: url(./images/heronext.jpg);
@@ -59,14 +62,13 @@ const Wrapper = styled.div`
     }
   }
 `;
-const Contact = () => {
+const Contact = ({ viewHelp }) => {
 
   const iconArray = [
     { product: "Telegram", icon: <FaTelegramPlane />, link: "https://t.me/SpaceGold1" },
     { product: "Twitter", icon: <FaTwitter />, link: "https://twitter.com/spacegoldcoin?t=EhwAUeZZ9u3QqxNFLzSuuw&s=09" },
     { product: "Instagram", icon: <FaInstagram />, link: "https://instagram.com/spacegoldcoin?igshid=YmMyMTA2M2Y=" },
-
-
+    // { product: "Help", icon: , link: "https://instagram.com/spacegoldcoin?igshid=YmMyMTA2M2Y=" },
   ];
 
   return (
@@ -74,7 +76,6 @@ const Contact = () => {
       <Col xs={11} xxl={10} className="mx-auto">
         <p className="title">CONTACT</p>
         <p className="text">
-          
         </p>
         <p className="text">
           SpaceGold is in private sale...
@@ -86,18 +87,27 @@ const Contact = () => {
           {iconArray.map((el, i) => (
             <Col xs={6} md={3} key={i} className="py-4 py-md-0">
               <div className="team-box d-flex flex-column justify-content-between align-items-center">
-                <div className="d-flex flex-column justify-content-start align-items-center second-team-box">
-                  <div className="position py-2">{el.product}</div>
-                </div>
                 <p className="text">
                   <a href={el.link}>
-
                     {el.icon} {el.product}
                   </a>
                 </p>
               </div>
             </Col>
           ))}
+          <Col xs={6} md={3} key={"help"} className="py-4 py-md-0">
+            <div className="team-box d-flex flex-column justify-content-between align-items-center">
+              <p className="text">
+                <Link onClick={() => { viewHelp(true) }}
+                  to="Help"
+                  smooth={true}
+                  offset={-150}
+                  duration={250}>
+                  <FaQuestionCircle /> Help
+                </Link>
+              </p>
+            </div>
+          </Col>
         </Row>
       </Col>
       <div className="overlay"></div>

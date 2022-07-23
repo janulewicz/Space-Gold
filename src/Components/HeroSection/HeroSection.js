@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   background-position: center;
   background-size: cover;
   position: relative;
-  padding-top: 180px;
+  padding-top: 40px;
 
   .title {
     font-family: 'Zilla Slab';

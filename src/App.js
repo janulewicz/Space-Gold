@@ -9,17 +9,25 @@ import Contact from "./Components/Contact/Contact";
 import Tokenomics from "./Components/Tokenomics/Tokenomics";
 import Team from "./Components/Team/Team";
 import Header from "./Components/Header/Header";
+import Help from "./Components/Help/Help";
 import React from 'react';
 import ReactGA from 'react-ga4';
-import { useEffect } from 'react';
-const TRACKING_ID = "G-46126YGGR3"; 
+import { useEffect, useState } from 'react';
+const TRACKING_ID = "G-46126YGGR3";
 ReactGA.initialize(TRACKING_ID);
 
 function App() {
   useEffect(() => {
     ReactGA.send({ hitType: "pageview", page: window.location.pathname + window.location.search });
   }, []);
-  
+
+  const [help, setHelp] = useState(false);
+
+  function viewHelp(help) {
+    // Similar to this.setState({ fruit: 'orange' })
+    setHelp(help);
+  }
+
   const problem = [
     "The museum grade antiques barrier to entry prevents thousands of investors from accessing the more exclusive assets that will benefit them in the long run.",
     "The time and money needed to hunt meteorites makes is almost impossible for small-scale companies and firms to enter the market and compete with established museums. ",
@@ -42,8 +50,7 @@ function App() {
         autoHideDuration={3000}
       >
         <MetaMaskProvider>
-
-          <Header />
+          <Header help={help} viewHelp={viewHelp}/>
           <HeroSection />
           <HeroNext />
           <ProblemAndSolution title="PROBLEMS" data={[...problem]} />
@@ -51,8 +58,8 @@ function App() {
           <RoadMap />
           <Tokenomics />
           <Team />
-          <Contact />
-
+          <Contact viewHelp={viewHelp}/>
+          <Help help={help} viewHelp={viewHelp}/>
         </MetaMaskProvider>
       </SnackbarProvider>
     </>

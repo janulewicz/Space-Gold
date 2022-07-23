@@ -1,10 +1,15 @@
 import { useSnackbar } from 'notistack';
 import { Fragment, useEffect, useState } from 'react';
-import { FaEthereum, FaWindowClose } from 'react-icons/fa';
+import { FaEthereum, FaWindowClose, FaQuestionCircle } from 'react-icons/fa';
+import { Link } from "react-scroll";
 import Button from 'react-bootstrap/Button'
-import { info, useMetaMaskBrowser, generic } from './Messages'
+import { info, useMetaMaskBrowser, generic, privateSale, success } from './Messages'
+import { bscChainNetworkParams } from './Constants'
+import styled from "styled-components";
+
 import { useMetaMask } from "metamask-react";
 import React from "react";
+
 const DEEP_LINK = "https://metamask.app.link/dapp/";
 const GOOGLE_FORM = "https://docs.google.com/forms/d/13FXdcAD4SAFY2eNNNvK_FeTQg44ng2RPjUyCp7To-Q4"
 // import { ethers } from "ethers";
@@ -14,70 +19,77 @@ if (process.env.REACT_APP_CONTEXT != null) {
   URL = (process.env.REACT_APP_CONTEXT === "production") ? process.env.REACT_APP_URL : process.env.REACT_APP_DEPLOY_PRIME_URL
 }
 
-function Wallet(props) {
+const Message = styled.div`
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+`;
 
+const Wrapper = styled.div`
+  font-size: 18px;
+  line-height: 150%;
+  text-transform: uppercase;
+  color: #2fd4e7;
+  text-decoration: none;
+  cursor: pointer;
+`;
+
+const Click = styled.div`
+  padding: 0px 10px;
+  align-items: center;
+  display: inline;
+  @media only screen and (max-width: 1000px) {
+    text-align: center;
+    display: block;
+    padding: 10px;
+  }
+`;
+
+const Wallet = ({ help, viewHelp }) => {
   const { addChain } = useMetaMask();
-  const bscChainNetworkParams = {
-    chainId: "0x38",
-    chainName: "Binance Smart Chain",
-    rpcUrls: ["https://bsc-dataseed.binance.org/"],
-    nativeCurrency: {
-      name: "BNB",
-      symbol: "BNB",
-      decimals: 18,
-    },
-    blockExplorerUrls: ["https://bscscan.com"]
-  };
-
   //Types of toast, also see Messages.j
   const action = key => (
-    <Fragment>
-      <Button variant="primary"
-        onClick={() => { closeSnackbar(key) }}>
-        <FaWindowClose />
-      </Button>{' '}
-    </Fragment>
+    <Message>
+      <CloseSnack key={key} />
+    </Message>
   )
+
   const mobile = key => (
-    <Fragment>
+    <Message>
       <Button variant="warning" onClick={() => {
         // Open the deeplink page 
         window.open(`${DEEP_LINK}${URL}`)
       }}>
         <FaEthereum /> Please Open In Metamask Browser
       </Button>{' '}
-      {' '}
-      <Button variant="primary"
-        onClick={() => { closeSnackbar(key) }}>
-        <FaWindowClose />
-      </Button>{' '}
-    </Fragment >
+      <CloseSnack key={key} />
+    </Message >
   )
 
   const install = key => (
-    <Fragment>
-      <Button variant="warning" onClick={() => {
+    <Message>
+      <Button className="message" variant="warning" onClick={() => {
         // Open metamask install page
         window.open(`${DEEP_LINK}`)
       }}>
         <FaEthereum /> Please Install Metamask!
       </Button>{' '}
-      {' '}
-      <Button variant="primary"
-        onClick={() => { closeSnackbar(key) }}>
-        <FaWindowClose />
-      </Button>{' '}
-    </Fragment >
+      <CloseSnack key={key} />
+    </Message >
   )
 
   const connected = key => (
-    <Fragment>{account} &nbsp;
+    <Message>{account} &nbsp;
       {' '}
-      <Button variant="primary"
-        onClick={() => { closeSnackbar(key) }}> {' '}
-        <FaWindowClose />
-      </Button>{' '}
-    </Fragment >
+      <CloseSnack key={key} />
+    </Message >
+  )
+
+  const invested = key => (
+    <Message><span role="img" aria-label="spacegold">&#x1F4B8; &nbsp; &nbsp;</span>
+      {' '}
+      <CloseSnack key={key} />
+    </Message >
   )
 
   // States
@@ -117,6 +129,52 @@ function Wallet(props) {
       })
   }
 
+  function CloseSnack({ snack }) {
+    return (
+      <Fragment>
+        <Button variant="primary"
+          onClick={() => { closeSnackbar(snack) }}>
+          <FaWindowClose />
+        </Button>
+      </Fragment>
+    );
+  }
+
+  function Help() {
+    return (
+      <Wrapper>
+        {status !== "notConnected" &&
+          <Click onClick={() => window.open(GOOGLE_FORM)}>INVEST
+          </Click>}
+        {status === "unavailable" &&
+          <Click onClick={() => { window.open(`${DEEP_LINK}${URL}`) }}>
+            METAMASK</Click>}
+        <Link onClick={() => { viewHelp(true) }}
+          to="Help"
+          smooth={true}
+          offset={-150}
+          duration={250}>
+          <Click>
+            <FaQuestionCircle />
+            {window.innerWidth < 1000 && " HELP"}
+          </Click>
+        </Link>
+      </Wrapper>
+    );
+  }
+
+  useEffect(() => {
+    if (help) {
+      message(privateSale, action)
+    }
+  }, [help]);
+
+  useEffect(() => {
+    if (investments === true) {
+      message(success, invested)
+    }
+  }, [investments]);
+
   // https://reactjs.org/docs/hooks-effect.html
   useEffect(() => {
     if (status === "unavailable") {
@@ -129,11 +187,9 @@ function Wallet(props) {
     }
 
     if (status === "connected") {
-      if (chainId === "0x38") {
+      if (chainId === bscChainNetworkParams.chainId) {
         message(info, connected)
         check_investor(account)
-
-
         // const provider = new ethers.providers.Web3Provider(window.ethereum)
 
         // // The MetaMask plugin also allows signing transactions to
@@ -153,53 +209,44 @@ function Wallet(props) {
 
   if (status === "notConnected") {
     return (
-      <Fragment>
+      <Wrapper>
         <Button onClick={connect}>
-          CONNECT WALLET
+          CONNECT METAMASK
         </Button>
-      </Fragment>
+        <Help />
+      </Wrapper>
     )
   }
   if (status === "connected") {
-    console.log(investments, status)
     if (investments) {
       return (
-        <Fragment>
+        <Wrapper>
           <Button variant="info" size="lg" disabled>
             INVESTED
           </Button>{' '}
-          <Fragment>
-          <Button variant="info" size="lg" onClick={() => window.open(GOOGLE_FORM)}>
-            BUY MORE
-          </Button>{' '}
-        </Fragment>
-        </Fragment>
+          <Wrapper>
+            <div onClick={() => window.open(GOOGLE_FORM)}>
+              BUY MORE
+            </div>
+          </Wrapper>
+        </Wrapper>
       )
     }
 
     if (chainId !== "0x38") {
-      console.log(chainId)
       return (
         <Button onClick={() => addChain(bscChainNetworkParams)}>SWITCH METAMASK TO BSC CHAIN</Button>
       )
     }
     else {
       return (
-        <Fragment>
-          <Button variant="info" size="lg" onClick={() => window.open(GOOGLE_FORM)}>
-            INVEST IN SPACEGOLDCOIN
-          </Button>{' '}
-        </Fragment>
+        <Help />
       )
     }
   }
   else {
     return (
-      <Fragment>
-      <Button variant="info" size="lg" onClick={() => window.open(GOOGLE_FORM)}>
-        INVEST IN SPACEGOLDCOIN
-      </Button>{' '}
-    </Fragment>
+      <Help />
     )
   }
 

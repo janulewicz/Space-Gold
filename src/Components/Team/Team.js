@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState, Fragment } from "react";
 import { Row, Col, Button } from "react-bootstrap";
+import { FaLinkedin } from 'react-icons/fa';
 import styled from "styled-components";
+import icon from './icon.png';
+
 const Wrapper = styled.div`
   background: url(./images/problembg.jpg);
   background-repeat: no-repeat;
@@ -17,13 +20,19 @@ const Wrapper = styled.div`
   .team-image {
     width: 150px;
   }
+  .link {
+    font-size: 50px;
+    line-height: 12px;
+  }
+  .greyedout {
+    opacity: 0.3;
+  }
   .title {
     font-family: Poppins;
     font-style: normal;
     font-weight: 500;
     font-size: 48px;
     line-height: 72px;
-
     color: #2fd4e7;
   }
   .position {
@@ -43,6 +52,15 @@ const Wrapper = styled.div`
     font-size: 16px;
     line-height: 150%;
     color: #ffffff;
+  }
+  .bio {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 250;
+    font-size: 13px;
+    line-height: 110%;
+    color: #ffffff;
+    padding: 6px 8px;
   }
   .button {
     border: 0;
@@ -92,18 +110,78 @@ const Wrapper = styled.div`
   }
 `;
 const Team = () => {
+
+  const [moreInfo, setmoreInfo] = useState("More");
+
+  function greyMeteor() {
+    return (
+      <div className="greyedout"><img src={icon} alt="SpaceGold" width="50" height="50" /></div>
+    )
+  }
+
   const teamArray = [
-    { position: "CEO", name: "Jan Janulewicz", image: "./images/ceo.png" },
-    { position: "CMO", name: "Darren Humpleby", image: "./images/cmo.png" },
     {
-      position: `Director of Field   Operations`,
+      position: "CEO",
+      name: "Jan Janulewicz",
+      image: "./images/ceo.png",
+      bio: [`Director of Insite Archaeological Services
+      employing 20 archaeologists in the UK, turnover
+      £1 million`,
+        `15 years experience in archaeological field
+      techniques`,
+        `8 years experience drone development`,
+        `Studied political economics`,
+        `Postgraduate studies in Law of Cryptocurrency at
+      Franklin Pierce school of Law`,
+        `4 years experience crypto investing, trading and
+      private equity due diligence`,
+        `ICO bounty hunter and cryptocurrency writer and
+      researcher`],
+      link:
+        <Button onClick={() => {
+          // Open Jan's LinkedIn
+          window.open("https://www.linkedin.com/in/jan-janulewicz-107b9184")
+        }}>
+          <FaLinkedin />
+        </Button>
+    },
+
+    {
+      position: "CMO",
+      name: "Darren Humpleby",
+      image: "./images/cmo.png",
+      bio: [`3 years leading marketing teams within the crypto space`,
+        `Experience running bounty campaigns,
+      blogging, seo content writing, press release copy, 
+      community building, social media, guerilla marketing, 
+      ppc, wide network of contacts, 
+      including exchange listing and press contacts`],
+      link: greyMeteor()
+    },
+    {
+      position: `Director of Field Operations`,
       name: "Oliver Ades",
       image: "./images/director.png",
+      bio: [`Worked for British Antarctic Research Survey.`,
+        `Completed 6 month expedition to Antarctica 
+      before working as a purity and isolation
+      technician for Syngenta Crop Sciences, 
+      and as a freelance crop inspector for UK cereals.`,
+        `Extensive experience in documentary film and media,
+      including video production and photography.`],
+      link: greyMeteor()
     },
     {
       position: "Chief Solutions Architect ",
       name: "Jack Fenton",
       image: "./images/csa.png",
+      bio: [`10+ years experience with specialisms in web 
+      security, cloud computing, site reliability and containerisation.`,
+        `Along with daytime toil at a selection of 
+      enterprise-level London tech firms
+      Jack likes to spend spare time looking away from screens
+      and daydreaming about loopholes in the space time continuum.`],
+      link: greyMeteor()
     },
   ];
   return (
@@ -118,7 +196,15 @@ const Team = () => {
                   <div className="position py-2">{el.position}</div>
                   <span className="name">{el.name}</span>
                 </div>
-                <Button variant="info" disabled>Read More</Button>
+                {moreInfo === "Less" && <Fragment><span className="bio"> <hr width="100%" />
+                  {Object.values(el.bio).map((bullet) => (
+                    <div className="bio" key={bullet}>• {bullet}</div>
+                  ))}
+                </span>
+                  <span className="link">{el.link}</span></Fragment>
+                }
+                ` \n`
+                <Button variant="info" onClick={() => setmoreInfo(moreInfo === "More" ? "Less" : "More")}>Read {moreInfo} </Button>
               </div>
             </Col>
           ))}
