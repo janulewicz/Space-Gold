@@ -32,6 +32,23 @@ const Wrapper = styled.div`
   color: #2fd4e7;
   text-decoration: none;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px 10px 10px;
+  @media only screen and (max-width: 1000px) {
+    display: block;
+    text-align: center;
+    padding: 10px 0px 10px 0px;
+  }
+  .menu-item {
+    padding: 10px 0px 10px 20px;
+    @media only screen and (max-width: 1000px) {
+      text-align: center;
+      display: block;
+      padding: 10px 0px 0px 0px;;
+    }
+  }
 `;
 
 const Click = styled.div`
@@ -224,11 +241,9 @@ const Wallet = ({ help, viewHelp }) => {
           <Button variant="info" size="lg" disabled>
             INVESTED
           </Button>{' '}
-          <Wrapper>
-            <div onClick={() => window.open(GOOGLE_FORM)}>
-              BUY MORE
-            </div>
-          </Wrapper>
+          <div className="menu-item" onClick={() => window.open(GOOGLE_FORM)}>
+            BUY MORE
+          </div>
         </Wrapper>
       )
     }
