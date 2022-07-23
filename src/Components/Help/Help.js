@@ -39,6 +39,7 @@ const Wrapper = styled.div`
     font-size: 14px;
     color: #ffffff;
     padding: 0px 0px 15px 0px;
+    white-space: pre-line;
   }
   .link {
     font-size: 16px;
@@ -69,7 +70,9 @@ const Wrapper = styled.div`
 const questions = [{
   question: `How do I invest?`,
   answer: `
-  Send Binance USD (BUSD) to our private sale walle and complete the investors form.
+  Send Binance USD (BUSD) to our private sale wallet and complete the investors form.
+  Investing direct from the website will be available soon.
+  It's good to have some BNB left to pay gas fees!
   `,
   link: true,
   url: "https://docs.google.com/forms/d/13FXdcAD4SAFY2eNNNvK_FeTQg44ng2RPjUyCp7To-Q4",
@@ -78,7 +81,7 @@ const questions = [{
 {
   question: `What happens to my money?`,
   answer: `
-  Your money is sent to our secure cold storage wallet.\n
+  Your money is sent to our secure cold storage wallet.
   It will be used for profit making activities around meteorite hunting.
   Some of the funds maybe used for marketing, 
   for example for us to speak at the Malta Blockchain and AI summit.
@@ -87,16 +90,15 @@ const questions = [{
 {
   question: `When do I get dividends?`,
   answer: `
-  Dividends will be paid after the Christie's auction
-  in Q1 2023, and every year anually after that.
+  Dividends will be paid after the Christie's auction in Q1 2023,
+  and every year anually after that.
   `,
 },
 {
   question: `Can I get my money back?`,
   answer: `
   Private sale investments are locked until the private sale completes.
-  In certain circumstances we will refund an
-  investor if in a time of need, at our discretion.
+  In certain circumstances we will refund an investor if in a time of need, at our discretion.
   `,
 },
 {
@@ -150,14 +152,6 @@ const questions = [{
 }
 ]
 
-
-
-
-
-
-
-
-
 function Faq() {
 
   return (
@@ -166,8 +160,8 @@ function Faq() {
         return (
           <Col sm="1" md="2" lg="3" xl="3" xxl="3" key={i}>
             <div key={el.question} className="question">
-            <hr width="100%" />
-            • {el.question}</div>
+              <hr width="100%" />
+              • {el.question}</div>
             <div key={el.answer} className="text">{el.answer}</div>
             {el.link && <div key={el.link} className="link" onClick={() => window.open(el.url)}>
               {el.link_text}
@@ -187,7 +181,7 @@ const Help = ({ help, viewHelp }) => {
           <div className="title">HELP!!! &nbsp;
             <FaWindowClose size="0.7em" onClick={() => { viewHelp(false) }} />
             <div className="right"><FaAngleUp size="0.7em" onClick={() => { viewHelp(false) }} /></div>
-            </div>
+          </div>
           <Row>
           </Row>
           <Faq />
