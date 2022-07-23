@@ -155,10 +155,10 @@ const questions = [{
 function Faq() {
 
   return (
-    <Row xs="1" sm="1" md="3" lg="3" xl="3" xxl="6">
+    <Row>
       {questions.map((el, i) => {
         return (
-          <Col sm="1" md="2" lg="3" xl="3" xxl="3" key={i}>
+          <Col sm="3" md="3" lg="3" xl="3" xxl="3" key={i}>
             <div key={el.question} className="question">
               <hr width="100%" />
               • {el.question}</div>
