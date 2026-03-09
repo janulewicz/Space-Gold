@@ -144,45 +144,7 @@ const Team = () => {
         }}>
           <FaLinkedin />
         </Button>
-    },
-
-    {
-      position: "CMO",
-      name: "Darren Humpleby",
-      image: "./images/cmo.png",
-      bio: [`3 years leading marketing teams within the crypto space`,
-        `Experience running bounty campaigns,
-      blogging, seo content writing, press release copy, 
-      community building, social media, guerilla marketing, 
-      ppc, wide network of contacts, 
-      including exchange listing and press contacts`],
-      link: greyMeteor()
-    },
-    {
-      position: `Director of Field Operations`,
-      name: "Oliver Ades",
-      image: "./images/director.png",
-      bio: [`Worked for British Antarctic Research Survey.`,
-        `Completed 6 month expedition to Antarctica 
-      before working as a purity and isolation
-      technician for Syngenta Crop Sciences, 
-      and as a freelance crop inspector for UK cereals.`,
-        `Extensive experience in documentary film and media,
-      including video production and photography.`],
-      link: greyMeteor()
-    },
-    {
-      position: "Chief Solutions Architect ",
-      name: "Jack Fenton",
-      image: "./images/csa.png",
-      bio: [`10+ years experience with specialisms in web 
-      security, cloud computing, site reliability and containerisation.`,
-        `Along with daytime toil at a selection of 
-      enterprise-level London tech firms
-      Jack likes to spend spare time looking away from screens
-      and daydreaming about loopholes in the space time continuum.`],
-      link: greyMeteor()
-    },
+    }
   ];
   return (
     <Wrapper>
